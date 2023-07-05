@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting planner</title>
+  <script src="assets/code.jquery.com_jquery-3.7.0.min.js"></script>
+  <script src="assets/jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
+  <script src="assets/kit.fontawesome.com_f6a7558c90.js"></script>
+  <link rel="stylesheet" href="assets/jquery-ui-1.13.2.custom/jquery-ui.min.css">
+  <link rel="stylesheet" href="assets/jquery-ui-1.13.2.custom/jquery-ui.structure.min.css">
+  <link rel="stylesheet" href="assets/jquery-ui-1.13.2.custom/jquery-ui.theme.min.css">
+  <script src="JS/global_config.js"></script>
+  <script src="JS/main.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/global_styles.css">
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+  <img id="empity" src="assets/empity.png" alt="empity" width="300">
+  <section id="meetings">
+    <ul id="meetings-list"></ul>
+    <div id="config-sec">
+      <i class="fa-solid fa-circle-info"></i>
+      <i class="fa-regular fa-plus"></i>
+    </div>
+  </section>
+
+  <div id="register">
+    <form action="#" onclick="return false">
+      <div class="contact-section">
+        <label for="name">Nombre del conferenciante</label>
+        <input type="text" name="name" id="name" size="30" minlength="2" maxlength="100" required>
+      </div>
+
+      <div class="contact-section">
+        <label for="sketch">Bosquejo</label>
+        <input type="text" name="sketch" id="sketch" placeholder="Ejemplo: 79-A quién prefiere como amigo" size="35" required>
+      </div>
+
+      <div class="contact-section">
+        <label for="congregation">Congregación</label>
+        <input type="text" name="congregation" id="congregation" size="30" required>
+      </div>
+
+      <div class="contact-section">
+        <label for="date">Fecha</label>
+        <input type="text" id="date" placeholder="mm/dd/aa" size="35" required>
+      </div>
+
+      <div class="contact-section">
+        <label for="id">Identificador</label>
+        <input type="text" name="id" id="id" size="30" placeholder="Ejemplo: Reunión 1" required>
+      </div>
+
+      <div class="contact-section"></div>
+      
+      <div class="contact-section" id="buttons">
+        <input type="submit" value="Cancelar" id="cancel">
+        <input type="submit" value="Guardar" id="save">
+      </div>
+    </form>
+  </div>
+</body>
+</html>

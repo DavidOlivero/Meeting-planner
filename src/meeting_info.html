@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meetings config</title>
+    <script src="assets/code.jquery.com_jquery-3.7.0.min.js"></script>
+    <script src="assets/jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
+    <script src="assets/kit.fontawesome.com_f6a7558c90.js"></script>
+    <script src="JS/global_config.js"></script>
+    <script src="JS/meeting_info.js"></script>
+    <link rel="stylesheet" href="assets/jquery-ui-1.13.2.custom/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/jquery-ui-1.13.2.custom/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="assets/jquery-ui-1.13.2.custom/jquery-ui.theme.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/global_styles.css">
+    <link rel="stylesheet" href="CSS/meeting_info.css">
+</head>
+<body>
+    <img id="unresult" src="assets/unresult.png" alt="Sin resultados">
+    <div id="search-area">
+        <input type="text" name="search" id="search" placeholder="Buscar elementos">
+        <i class="fa-solid fa-circle-xmark"></i>
+        <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+
+    <img id="empity" src="assets/empity.png" alt="empity" width="300">
+    <section id="meetings">
+        <ul id="meetings-list"></ul>
+    </section>
+
+    <section id="info">
+        <h3>Información de la Reunión</h3>
+    </section>
+</body>
+</html>

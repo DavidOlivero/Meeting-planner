@@ -1,0 +1,42 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    color: #fff;
+    box-sizing: border-box;
+    background-color: #222;
+    font-family: 'Roboto', sans-serif;
+}
+
+#empity {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+#meetings ul {
+    list-style: none;
+    font-weight: 100;
+    padding: 10px;
+}
+  
+.element {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    background-color: rgb(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 10px;
+    transition: 0.5s;
+}
+  
+.element p {
+    background-color: rgb(255, 255, 255, 0.3);
+    transition: 0.5s;
+}
+  
+.element .date {
+    font-size: 12px;
+    padding-top: 5px;
+}
