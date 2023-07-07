@@ -131,6 +131,45 @@ $(document).ready(() => {
         }
     })
 
+    $(document).on("click", ".element", function () {
+        const element_id = $(this).find(".id").text()
+        const info = $("#info")
+        const element_info = meetings[element_id.replace(/ /g, "_")][1]
+        const all_elements = $("body").children().not(info);
+
+        info.find("h3").remove()
+        info.find("div").remove()
+        info.append(`
+        <h3>${element_id}</h3>
+        <div id=name>
+            <p><strong>Nombre del conferenciante</strong></p>
+            <p>${element_info.name}</p>
+        </div>
+        <div id=sketch>
+            <p><strong>Bosquejo</strong></p>
+            <p>${element_info.sketch}</p>
+        </div>
+        <div id=congregation>
+            <p><strong>Congregación</strong></p>
+            <p>${element_info.congregation}</p>
+        </div>
+        <div id=date>
+            <p><strong>Fecha</strong></p>
+            <p>${element_info.date}</p>
+        </div>
+        `)
+        info.fadeIn()
+
+        all_elements.addClass("inactive");
+        all_elements.css("pointer-events", "none")
+
+        $("#close").click(() => {
+            info.fadeOut()
+            all_elements.removeClass("inactive");
+            all_elements.css("pointer-events", "auto")
+        })
+    })
+
     render_elements()
     update_empity()
     delete_elements()
