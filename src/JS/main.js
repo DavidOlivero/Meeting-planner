@@ -15,6 +15,7 @@ $(document).ready(() => {
   const date_input = $("#date")
   const id_input = $("#id")
   const register_window = $("#register")
+  const desactivated_elements = $("body").children().not(register_window)
 
   let old_id
   let old_date
@@ -41,10 +42,14 @@ $(document).ready(() => {
     }
 
     register_window.fadeIn();
+    desactivated_elements.addClass("inactive")
+    desactivated_elements.css("pointer-events", "none")
   }
 
   const hide_register = () => {
     register_window.fadeOut()
+    desactivated_elements.removeClass("inactive")
+    desactivated_elements.css("pointer-events", "auto")
   }
 
   const delete_element = (id) => {
