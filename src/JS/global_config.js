@@ -35,6 +35,14 @@ const render_elements = () => {
         $(this).find(".date").animate({
           backgroundColor: "#0D76E5"
         }, 50)
+
+        $(this).find(".left-date-info").animate({
+          backgroundColor: "#0D76E5"
+        }, 50)
+
+        $(this).find(".delay-date-info").animate({
+          backgroundColor: "#0D76E5"
+        }, 50)
     })
 
     $(document).on("mouseleave", ".element", function () {
@@ -52,6 +60,14 @@ const render_elements = () => {
         }, 50)
         
         $(this).find(".date").animate({
+          backgroundColor: "rgb(255, 255, 255, 0.3)"
+        }, 50)
+
+        $(this).find(".left-date-info").animate({
+          backgroundColor: "rgb(255, 255, 255, 0.3)"
+        }, 50)
+
+        $(this).find(".delay-date-info").animate({
           backgroundColor: "rgb(255, 255, 255, 0.3)"
         }, 50)
     })

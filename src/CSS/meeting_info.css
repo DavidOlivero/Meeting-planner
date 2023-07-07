@@ -8,7 +8,6 @@
     transform: translate(-50%, -50%);
     z-index: -1;
     opacity: 0.2;
-    /* visibility: hidden; */
 }
 
 #search-area {
@@ -74,14 +73,16 @@
     padding: 20px;
 }
 
-.left-date-info {
-    background-color: #24b12b;
-    border-radius: 10px;
+.left-date-info, .delay-date-info {
+    background-color: rgb(255, 255, 255, 0.3);
 }
 
-.delay-date-info {
+.left-date-info p {
+    background-color: #24b12b;
+}
+
+.delay-date-info p {
     background-color: #ec1912;
-    border-radius: 10px;
 }
 
 .left-date-info p, .delay-date-info p {
@@ -89,4 +90,5 @@
     font-size: 12px;
     color: #fff;
     text-align: center;
+    border-radius: 10px;
 }
