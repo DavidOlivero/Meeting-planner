@@ -8,6 +8,32 @@ const delete_elements = () => {
     })
 }
 
+const search_function = () => {
+    const text = $("#search").val().toLowerCase()
+
+        if (text) {
+            let i = 0
+            $(".element").each(function () {
+                const element = $(this)
+                const p_element = element.find(".id")
+                const text = p_element.text().toLowerCase()
+                
+                if (text.includes($("#search").val().toLowerCase())) {
+                    element.css("visibility", "visible")
+                } else {
+                    element.css("display", "none")
+                    i++
+                }
+            })
+            
+            if (i ===  $(".element").length) {
+                $("#unresult").show()
+            } else {
+                $("#unresult").hide()
+            }
+        }
+}
+
 const set_left_date = () => {
     evaluate_by_date(function (time_left) {
         const element = $("#" + data.id.replace(/ /g, "-")).find("div")
@@ -60,44 +86,25 @@ const set_delay_time = () => {
 }
 
 $(document).ready(() => {
-    const search_input = $("#search")
-    const unresult = $("#unresult")
     const search_button =  $("#search-button")
     const glass = $(".fa-magnifying-glass")
-    let elements
 
     search_button.click(() => { 
-        const text = search_input.val().toLowerCase()
+        search_function()
+    })
 
-        if (text) {
-            let i = 0
-            elements.each(function () {
-                const element = $(this)
-                const p_element = element.find(".id")
-                const text = p_element.text().toLowerCase()
-                
-                if (text.includes(search_input.val().toLowerCase())) {
-                    element.css("visibility", "visible")
-                } else {
-                    element.css("display", "none")
-                    i++
-                }
-            })
-            
-            if (i === elements.length) {
-                unresult.show()
-            } else {
-                unresult.hide()
-            }
+    $(document).keydown((event) => {
+        if (event.keyCode === 13) {
+            search_function()
         }
     })
 
     $(".fa-circle-xmark").click(() => {
-        search_input.val("")
-        elements.each(function () {
+        $("#search").val("")
+        $(".element").each(function () {
             $(this).css("display", "block")
             $(this).css("display", "flex")
-            unresult.hide()
+            $("#unresult").hide()
         })
     })
 
@@ -126,8 +133,6 @@ $(document).ready(() => {
             delete_elements()
             set_left_date()
             set_delay_time()
-
-            elements = $(".element")
         }
     })
 
@@ -175,6 +180,4 @@ $(document).ready(() => {
     delete_elements()
     set_left_date()
     set_delay_time()
-
-    elements = $(".element")
 })
