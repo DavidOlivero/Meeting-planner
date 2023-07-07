@@ -151,7 +151,6 @@ $(document).ready(() => {
       new_meetings = new_meetings.replace(old_data, new_data)
 
       meetings = JSON.parse(new_meetings)
-      console.log(meetings)
 
       localStorage.setItem("Meetings", new_meetings)
       render_elements()
