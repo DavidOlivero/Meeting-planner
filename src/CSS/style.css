@@ -41,6 +41,7 @@
   background-color: #0D76E5;
   padding: 10px;
   margin: 10px;
+  margin-top: 0;
   border-radius: 10px;
   width: 50px;
   height: 50px;
@@ -55,6 +56,13 @@
   transition: 0.5s;
 }
 
+.fa-gear {
+  text-align: center;
+  font-size: 40px;
+  transition: 0.5s;
+  padding: 10px;
+}
+
 .fa-plus:hover {
   background-color: #0A56A8;
   cursor: pointer;
@@ -62,6 +70,11 @@
 
 .fa-circle-info:hover {
   color: #0D76E5;
+  cursor: pointer;
+}
+
+.fa-gear:hover {
+  color: #797979;
   cursor: pointer;
 }
 

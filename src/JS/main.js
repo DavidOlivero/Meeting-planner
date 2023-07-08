@@ -4,6 +4,10 @@ async function open_meeting_info() {
   await invoke("open_meeting_info", {  })
 }
 
+async function open_settings() {
+  await invoke("open_settings", { })
+}
+
 const feature = () => {
   $("#" + data.id.replace(/ /g, "-")).css("display", "none")
 }
@@ -71,6 +75,10 @@ $(document).ready(() => {
 
   $(".fa-circle-info").click(() => {
     open_meeting_info()
+  })
+
+  $(".fa-gear").click(() => {
+    open_settings()
   })
 
   $(".fa-plus").click(() => {

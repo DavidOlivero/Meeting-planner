@@ -18,9 +18,24 @@ async fn open_meeting_info(handle: tauri::AppHandle) {
   .unwrap();
 }
 
+#[tauri::command]
+async fn open_settings(handle: tauri::AppHandle) {
+  tauri::WindowBuilder::new(
+    &handle,
+    "local",
+    tauri::WindowUrl::App("settings.html".into())
+  )
+  .title("Settings")
+  .resizable(false)
+  .maximized(false)
+  .inner_size(800.0, 600.0)
+  .build()
+  .unwrap();
+}
+
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![open_meeting_info])
+        .invoke_handler(tauri::generate_handler![open_meeting_info, open_settings])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
