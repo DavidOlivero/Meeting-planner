@@ -8,7 +8,7 @@ This is application created with Tauri Framework for organize meetings.
 
 ## How to start
 * Install all necesary
-`https://tauri.app/v1/guides/getting-started/prerequisites`
+[Tauri guides](https://tauri.app/v1/guides/getting-started/prerequisites, "Tauri guides")
 * Clone repository
 `git clone https://github.com/DavidOlivero/Meeting-planner`
 * Install dependecies
