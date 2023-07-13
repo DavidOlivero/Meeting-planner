@@ -54,3 +54,12 @@ input[type="submit"], input[type="text"] {
 #light div:hover, #dark div:hover {
     filter: drop-shadow(10px 10px 10px #000);
 }
+
+#info, #info div {
+    background-color: #fff;
+}
+
+#info #close {
+    background-color: #fff;
+    border: 1px solid #222;
+}
