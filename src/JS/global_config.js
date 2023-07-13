@@ -1,6 +1,26 @@
 let meetings =  JSON.parse(localStorage.getItem("Meetings")) || {}
 let data
 
+$(document).ready(() => {
+  let theme = localStorage.getItem("Theme")
+  let theme_style = $('link[href="CSS/light.css"]')
+
+  if (theme === "null") {
+    theme = localStorage.setItem("Theme", "light")
+  } else {
+    theme_style.attr("href", `CSS/${theme}.css`)
+    theme_style = $(`link[href="CSS/${theme}.css"]`)
+  }
+
+  $(window).on("storage", (event) => {
+    if (event.originalEvent.key === "Theme") {
+      theme = localStorage.getItem("Theme")
+      theme_style.attr("href", `CSS/${theme}.css`)
+      theme_style = $(`link[href="CSS/${theme}.css"]`)
+    }
+  })
+})
+
 const update_empity = () => {
     const empity_image = $("#empity")
   
@@ -15,62 +35,62 @@ const render_elements = () => {
     const meetings_list = $("#meetings-list").empty()
 
     Object.values(meetings).forEach((value) => {
-        meetings_list.append(value[0])
+      meetings_list.append(value[0])
     })
 
     $(document).on("mouseenter", ".element", function () {
-        $(this).animate({
-          backgroundColor: "#0D76E5"
-        }, 50)
+      $(this).animate({
+        backgroundColor: "#0D76E5"
+      }, 50)
 
-        $(this).find(".i-elements").animate({
-          backgroundColor: "#0D76E5"
-        }, 50)
-        $(this).find("i").fadeIn(50)
+      $(this).find(".i-elements").animate({
+        backgroundColor: "#0D76E5"
+      }, 50)
+      $(this).find("i").fadeIn(50)
 
-        $(this).find(".id").animate({
-          backgroundColor: "#0D76E5"
-        }, 50)
+      $(this).find(".id").animate({
+        backgroundColor: "#0D76E5"
+      }, 50)
 
-        $(this).find(".date").animate({
-          backgroundColor: "#0D76E5"
-        }, 50)
+      $(this).find(".date").animate({
+        backgroundColor: "#0D76E5"
+      }, 50)
 
-        $(this).find(".left-date-info").animate({
-          backgroundColor: "#0D76E5"
-        }, 50)
+      $(this).find(".left-date-info").animate({
+        backgroundColor: "#0D76E5"
+      }, 50)
 
-        $(this).find(".delay-date-info").animate({
-          backgroundColor: "#0D76E5"
-        }, 50)
+      $(this).find(".delay-date-info").animate({
+        backgroundColor: "#0D76E5"
+      }, 50)
     })
 
     $(document).on("mouseleave", ".element", function () {
-        $(this).animate({
-          backgroundColor: "rgb(255, 255, 255, 0.3)"
-        }, 50)
+      $(this).animate({
+        backgroundColor: "rgb(136, 136, 136)"
+      }, 50)
 
-        $(this).find(".i-elements").animate({
-          backgroundColor: "rgb(255, 255, 255, 0.3)"
-        }, 50)
-        $(this).find("i").fadeOut(50)
+      $(this).find(".i-elements").animate({
+        backgroundColor: "rgb(136, 136, 136)"
+      }, 50)
+      $(this).find("i").fadeOut(50)
 
-        $(this).find(".id").animate({
-          backgroundColor: "rgb(255, 255, 255, 0.3)"
-        }, 50)
-        
-        $(this).find(".date").animate({
-          backgroundColor: "rgb(255, 255, 255, 0.3)"
-        }, 50)
+      $(this).find(".id").animate({
+        backgroundColor: "rgb(136, 136, 136)"
+      }, 50)
+      
+      $(this).find(".date").animate({
+        backgroundColor: "rgb(136, 136, 136)"
+      }, 50)
 
-        $(this).find(".left-date-info").animate({
-          backgroundColor: "rgb(255, 255, 255, 0.3)"
-        }, 50)
+      $(this).find(".left-date-info").animate({
+        backgroundColor: "rgb(136, 136, 136)"
+      }, 50)
 
-        $(this).find(".delay-date-info").animate({
-          backgroundColor: "rgb(255, 255, 255, 0.3)"
-        }, 50)
-    })
+      $(this).find(".delay-date-info").animate({
+        backgroundColor: "rgb(136, 136, 136)"
+      }, 50)
+  })
 }
 
 const evaluate_by_date = (feature, comprobate) => {

@@ -1,0 +1,53 @@
+* {
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+}
+
+#options {
+    width: 35vw;
+    height: 100vw;
+}
+
+#options li {
+    margin: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+#options li:hover {
+    background-color: #257cda;
+}
+
+#theme {
+    padding: 20px;
+    display: flex;
+    margin-left: 20px;
+}
+
+#light, #dark {
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 250px;
+    height: 250px;
+}
+
+#light div, #dark div {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#light div {
+    background-image: url("../assets/light.png");
+}
+
+#dark div {
+    background-image: url("../assets/dark.png");
+}

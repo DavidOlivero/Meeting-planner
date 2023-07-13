@@ -83,7 +83,6 @@
   padding: 20px;
   width: 650px;
   height: 450px;
-  background-color: #222;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -115,7 +114,6 @@ input[type="submit"] {
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
-  border: 1px solid #fff;
 }
 
 #cancel:hover {
@@ -133,6 +131,5 @@ input[type="submit"] {
 
 input[type="text"] {
   padding: 5px;
-  border: 1px solid #fff;
   border-radius: 10px;
 }

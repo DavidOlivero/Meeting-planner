@@ -7,7 +7,7 @@
 async fn open_meeting_info(handle: tauri::AppHandle) {
   tauri::WindowBuilder::new(
     &handle,
-    "local",
+    "info",
     tauri::WindowUrl::App("meeting_info.html".into())
   )
   .title("Meeting info")
@@ -22,7 +22,7 @@ async fn open_meeting_info(handle: tauri::AppHandle) {
 async fn open_settings(handle: tauri::AppHandle) {
   tauri::WindowBuilder::new(
     &handle,
-    "local",
+    "settings",
     tauri::WindowUrl::App("settings.html".into())
   )
   .title("Settings")

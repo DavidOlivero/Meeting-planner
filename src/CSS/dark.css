@@ -1,0 +1,56 @@
+* {
+    color: #fff;
+    background-color: #222;
+}
+
+.element,.element p {
+    background-color: rgb(255, 255, 255, 0.3);
+}
+
+.left-date-info p {
+    background-color: #24b12b;
+}
+
+.delay-date-info p {
+    background-color: #ec1912;
+}
+
+#register {
+    background-color: #222;
+}
+
+input[type="submit"], input[type="text"] {
+    border: 1px solid #fff;
+}
+
+#search-area input {
+    background-color: #fff;
+}
+
+#search-area button {
+    border: 1px solid #fff;
+}
+
+#search-area .fa-circle-xmark {
+    background-color: #222;
+}
+
+.left-date-info, .delay-date-info {
+    background-color: rgb(255, 255, 255, 0.3);
+}
+
+#options {
+    border-right: 1px solid #ccc;
+}
+
+#options li {
+    background-color: rgb(255, 255, 255, 0.3);
+}
+
+#light div, #dark div {
+    border: 1px solid #fff;
+}
+
+#light div:hover, #dark div:hover {
+    filter: drop-shadow(10px 10px 10px #000);
+}
