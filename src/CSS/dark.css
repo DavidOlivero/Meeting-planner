@@ -63,3 +63,7 @@ input[type="submit"], input[type="text"] {
     background-color: #222;
     border: 1px solid #fff;
 }
+
+#WhatSapp #continer #add-contact .fa-plus {
+    border: 1px solid #fff;
+}

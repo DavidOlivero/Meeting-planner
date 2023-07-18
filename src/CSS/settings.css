@@ -23,7 +23,6 @@ body {
 }
 
 #theme {
-    padding: 20px;
     display: flex;
     margin-left: 20px;
 }
@@ -50,4 +49,64 @@ body {
 
 #dark div {
     background-image: url("../assets/dark.png");
+}
+
+#WhatSapp {
+    display: none;
+    margin-top: 20px;
+    width: 65vw;
+}
+
+#WhatSapp #continer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#WhatSapp #continer img {
+    width: 230px;
+    height: 230px;
+}
+
+#WhatSapp #continer p {
+    margin-top: 10px;
+    text-align: center;
+    line-height: 23px;
+}
+
+#WhatSapp #continer h4 {
+    margin-top: 10px;
+}
+
+#WhatSapp #continer #add-contact {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+}
+
+#WhatSapp #continer #add-contact input {
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+}
+
+#add-contact input:focus {
+    border: 1px solid #3ec017;
+    outline-color: #3ec017;
+}
+
+#WhatSapp #continer #add-contact .fa-plus {
+    background-color: #3ec017;
+    color: #fff;
+    width: 35px;
+    height: 37px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 35px;
+    transition: 0.5s;
+    border: 1px solid #fff;
+}
+
+#WhatSapp #continer #add-contact .fa-plus:hover {
+    background-color: #24770b;
 }
