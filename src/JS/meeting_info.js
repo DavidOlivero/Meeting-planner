@@ -41,19 +41,19 @@ const set_left_date = () => {
         if (time_left[0] > 0) {
             element.append(`
             <div class=left-date-info>
-                <p>Restan ${time_left[0]} ${time_left[0] === 1 ? "año" : "años"} y ${Math.abs(time_left[1])} ${Math.abs(time_left[1]) === 1 ? "mes" : "meses"}</p>
+                <p>Restan ${time_left[0]} ${time_left[0] === 1 ? "año" : "años"} y ${(time_left[1])} ${(time_left[1]) === 1 ? "mes" : "meses"}</p>
             </div>
             `);
-        } else if (time_left[0] === 0 && Math.abs(time_left[1]) > 0) {
+        } else if (time_left[0] === 0 && (time_left[1]) > 0) {
             element.append(`
             <div class=left-date-info>
-                <p>Restan ${Math.abs(time_left[1])} ${Math.abs(time_left[1]) === 1 ? "mes" : "meses"}</p>
+                <p>Restan ${(time_left[1])} ${(time_left[1]) === 1 ? "mes" : "meses"}</p>
             </div>
             `)
         } else {
             element.append(`
             <div class=left-date-info>
-                <p>Restan ${Math.abs(time_left[2])} ${Math.abs(time_left[2]) === 1 ? "día" : "días"}</p>
+                <p>Restan ${(time_left[2])} ${(time_left[2]) === 1 ? "día" : "días"}</p>
             </div>
             `)
         }
@@ -64,23 +64,35 @@ const set_delay_time = () => {
     evaluate_by_date(function (time_left) {
         const element = $("#" + data.id.replace(/ /g, "-")).find("div")
         if (time_left[0] < 0) {
+            console.log("Hola que hay", element)
             element.append(`
             <div class=delay-date-info>
-                <p>De hace ${time_left[0]} ${time_left[0] === 1 ? "año" : "años"} y ${Math.abs(time_left[1])} ${Math.abs(time_left[1]) === 1 ? "mes" : "meses"}</p>
+                <p>De hace ${Math.abs(time_left[0])} ${Math.abs(time_left[0]) === 1 ? "año" : "años"} y ${time_left[1]} ${time_left[1] === 1 ? "mes" : "meses"}</p>
             </div>
-            `);
-        } else if (time_left[0] === 0) {
+            `)
+        } else if (time_left[0] === 0 && time_left[1] !== 0) {
             element.append(`
             <div class=delay-date-info>
-                <p>De hace ${Math.abs(time_left[1])} ${Math.abs(time_left[1]) === 1 ? "mes" : "meses"}</p>
+                <p>De hace ${time_left[1]} ${time_left[1] === 1 ? "mes" : "meses"}</p>
             </div>
             `)
         } else {
-            element.append(`
-            <div class=delay-date-info>
-                <p>De hace ${Math.abs(time_left[2])} ${Math.abs(time_left[2]) === 1 ? "día" : "días"}</p>
-            </div>
-            `)
+            if (time_left[2] > 6) {
+                const week = Math.floor((Math.floor(time_left[2] / 2) * 2) / 7)
+                const days = time_left[2] % 2 !== 0 ? time_left[2] % 2 : ""
+
+                element.append(`
+                <div class=delay-date-info>
+                    <p>De hace ${week} ${week === 1 ? "semana" : "semanas"} ${days !== "" ? "y" : ""} ${days} ${days !== "" ? days === 1 ? "día" : "días" : ""}</p>
+                </div>
+                `)
+            } else {
+                element.append(`
+                <div class=delay-date-info>
+                    <p>De hace ${time_left[2]} ${time_left[2] === 1 ? "día" : "días"}</p>
+                </div>
+                `)
+            }
         }
     }, false)
 }
