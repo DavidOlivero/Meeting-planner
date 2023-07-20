@@ -64,6 +64,10 @@ input[type="submit"], input[type="text"] {
     border: 1px solid #222;
 }
 
-#WhatSapp #continer #add-contact .fa-plus {
+#WhatSapp #continer #contact .fa-plus {
     border: 1px solid #000;
+}
+
+#number-list li {
+    background-color: rgb(136, 136, 136);
 }

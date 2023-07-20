@@ -1,14 +1,11 @@
-* {
-    overflow: hidden;
-}
-
 body {
     display: flex;
 }
 
 #options {
     width: 35vw;
-    height: 100vw;
+    height: 100vh;
+    position: fixed;
 }
 
 #options li {
@@ -25,6 +22,7 @@ body {
 #theme {
     display: flex;
     margin-left: 20px;
+    padding-left: 35vw;
 }
 
 #light, #dark {
@@ -54,7 +52,8 @@ body {
 #WhatSapp {
     display: none;
     margin-top: 20px;
-    width: 65vw;
+    width: 100vw;
+    padding-left: 35vw;
 }
 
 #WhatSapp #continer {
@@ -78,24 +77,26 @@ body {
     margin-top: 10px;
 }
 
-#WhatSapp #continer #add-contact {
+#WhatSapp #continer #contact {
+    display: grid;
+    grid-template-columns: 1fr 35px;
     margin-top: 10px;
-    display: flex;
     gap: 20px;
 }
 
-#WhatSapp #continer #add-contact input {
+#WhatSapp #continer #contact input {
+    margin: 10px;
     padding: 10px;
     border-radius: 10px;
     width: 200px;
 }
 
-#add-contact input:focus {
+#contact input:focus {
     border: 1px solid #3ec017;
     outline-color: #3ec017;
 }
 
-#WhatSapp #continer #add-contact .fa-plus {
+#WhatSapp #continer #contact .fa-plus {
     background-color: #3ec017;
     color: #fff;
     width: 35px;
@@ -104,9 +105,38 @@ body {
     border-radius: 10px;
     font-size: 35px;
     transition: 0.5s;
-    border: 1px solid #fff;
+    justify-self: end;
+    align-self: center;
 }
 
-#WhatSapp #continer #add-contact .fa-plus:hover {
+#WhatSapp #continer #contact .fa-plus:hover {
     background-color: #24770b;
+}
+
+#number-list {
+    list-style: none;
+}
+
+#number-list li {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#number-list li .fa-trash-can {
+    display: none;
+    justify-self: end;
+    transition: 0.5s;
+    background-color: transparent;
+}
+
+#number-list li .fa-trash-can:hover {
+    color: #FF0707;
+}
+
+#number-list li:hover {
+    background-color: #257cda;
 }
