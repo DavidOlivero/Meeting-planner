@@ -72,11 +72,16 @@ $(document).ready(() => {
     })
 
     $(document).on("click", ".fa-trash-can", function () {
-        const text = $(this).closest("li").text().trim()
-        const index = number.indexOf(text)
-        number.splice(index, 1)
-        localStorage.setItem("Contacts", JSON.stringify(number))
-        render_contacts()
+        confirm("Está seguro de que descea eliminar el contacto")
+            .then((value) => {
+                if (value) {
+                    const text = $(this).closest("li").text().trim()
+                    const index = number.indexOf(text)
+                    number.splice(index, 1)
+                    localStorage.setItem("Contacts", JSON.stringify(number))
+                    render_contacts()      
+                }
+            })
     })
 
     render_contacts()
