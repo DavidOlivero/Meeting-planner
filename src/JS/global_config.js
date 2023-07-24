@@ -20,9 +20,9 @@ $(document).ready(() => {
       theme_style = $(`link[href="CSS/${theme}.css"]`)
 
       const element = $(".element")
-      element.removeAttr("style")
-      element.find("p").removeAttr("style")
-      element.find("div").removeAttr("style")
+      element.css("background-color", "")
+      element.find("p").css("background-color", "")
+      element.find("div").css("background-color", "")
 
       if (theme === "light") {
         color = "rgb(136, 136, 136)"

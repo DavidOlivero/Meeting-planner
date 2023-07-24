@@ -153,8 +153,8 @@ $(document).ready(() => {
         const search_area = $("#search-area")
         const element_info = meetings[element_id.replace(/ /g, "_")][1]
         const all_elements = $("body").children().not("#search-area, #info")
-       search_area.css("z-index", "800")
-       search_area.css("pointer-events", "none")
+        search_area.css("z-index", "800")
+        search_area.css("pointer-events", "none")
 
         info.find("h3").remove()
         info.find("div").remove()
@@ -184,6 +184,7 @@ $(document).ready(() => {
         $("#close").click(() => {
             info.fadeOut()
             all_elements.removeClass("inactive")
+            search_area.css("pointer-events", "auto")
         })
     })
 
