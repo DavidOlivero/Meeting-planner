@@ -125,7 +125,6 @@ const evaluate_by_date = (feature, comprobate) => {
       const cal_year = end_date.getFullYear() - full_date.getFullYear()
 
       let cal_month = (end_date.getFullYear() - full_date.getFullYear()) * 12 + ((end_date.getMonth() + 1) - (full_date.getMonth() + 1))
-      console.log(end_date.getMonth() + 1)
       const cal_day = Math.floor(end_date.getDate() - full_date.getDate())
       
       const time_left = [

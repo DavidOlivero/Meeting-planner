@@ -64,7 +64,6 @@ const set_delay_time = () => {
     evaluate_by_date(function (time_left) {
         const element = $("#" + data.id.replace(/ /g, "-")).find("div")
         if (time_left[0] < 0) {
-            console.log("Hola que hay", element)
             element.append(`
             <div class=delay-date-info>
                 <p>De hace ${Math.abs(time_left[0])} ${Math.abs(time_left[0]) === 1 ? "año" : "años"} y ${time_left[1]} ${time_left[1] === 1 ? "mes" : "meses"}</p>
@@ -151,8 +150,11 @@ $(document).ready(() => {
     $(document).on("click", ".element", function () {
         const element_id = $(this).find(".id").text()
         const info = $("#info")
+        const search_area = $("#search-area")
         const element_info = meetings[element_id.replace(/ /g, "_")][1]
-        const all_elements = $("body").children().not(info);
+        const all_elements = $("body").children().not("#search-area, #info")
+       search_area.css("z-index", "800")
+       search_area.css("pointer-events", "none")
 
         info.find("h3").remove()
         info.find("div").remove()
@@ -177,13 +179,11 @@ $(document).ready(() => {
         `)
         info.fadeIn()
 
-        all_elements.addClass("inactive");
-        all_elements.css("pointer-events", "none")
+        all_elements.addClass("inactive")
 
         $("#close").click(() => {
             info.fadeOut()
-            all_elements.removeClass("inactive");
-            all_elements.css("pointer-events", "auto")
+            all_elements.removeClass("inactive")
         })
     })
 
