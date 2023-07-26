@@ -4,14 +4,18 @@
 
 .i-elements {
   display: flex;
-  background-color: rgb(255, 255, 255, 0.3);
+  background-color: transparent;
   height: 25px;
   align-self: center;
 }
 
+.element:hover {
+  background-color: #0D76E5;
+}
+
 .i-elements i {
   display: none;
-  background-color: #0D76E5;
+  background-color: transparent;
   font-size: 20px;
   padding: 3px;
   align-self: center;
