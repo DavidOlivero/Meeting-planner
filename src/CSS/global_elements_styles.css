@@ -20,6 +20,10 @@
     padding: 10px;
     transition: 0.5s;
 }
+
+.element:hover {
+    background-color: #0D76E5;
+  }
   
 .element p {
     transition: 0.5s;
