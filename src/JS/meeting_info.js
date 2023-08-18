@@ -63,6 +63,8 @@ const set_left_date = () => {
 const set_delay_time = () => {
     evaluate_by_date(function (time_left) {
         const element = $("#" + data.id.replace(/ /g, "-")).find("div")
+        const meeting = $("#" + data.id.replace(/ /g, "-"))
+        console.log(meeting)
         if (time_left[0] < 0) {
             element.append(`
             <div class=delay-date-info>
