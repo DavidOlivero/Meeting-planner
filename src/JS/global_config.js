@@ -59,25 +59,13 @@ const render_elements = () => {
     $(document).on("mouseenter", ".element", function () {
       $(this).find(".i-elements i").show()
       
-      $(this).find(".id").animate({
-        backgroundColor: "#0D76E5"
-      }, 20)
-
-      $(this).find(".date").animate({
-        backgroundColor: "#0D76E5"
-      }, 20)
+      
     })
 
     $(document).on("mouseleave", ".element", function () {
       $(this).find(".i-elements i").hide()
 
-      $(this).find(".id").animate({
-        backgroundColor: color
-      }, 20)
-
-      $(this).find(".date").animate({
-        backgroundColor: color
-      }, 20)
+      
     })
 }
 

@@ -63,8 +63,6 @@ const set_left_date = () => {
 const set_delay_time = () => {
     evaluate_by_date(function (time_left) {
         const element = $("#" + data.id.replace(/ /g, "-")).find("div")
-        const meeting = $("#" + data.id.replace(/ /g, "-"))
-        console.log(meeting)
         if (time_left[0] < 0) {
             element.append(`
             <div class=delay-date-info>
@@ -79,7 +77,7 @@ const set_delay_time = () => {
             `)
         } else {
             if (time_left[2] > 6) {
-                const week = Math.floor((Math.floor(time_left[2] / 2) * 2) / 7)
+                const week = Math.floor(time_left[2] / 7)
                 const days = time_left[2] % 2 !== 0 ? time_left[2] % 2 : ""
 
                 element.append(`
