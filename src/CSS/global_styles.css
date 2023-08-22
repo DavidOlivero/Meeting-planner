@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'Roboto';
+    src: 
+        url(../assets/Fonts/Roboto/Roboto-Light.ttf) format('truetype');
+}
+
 * {
     margin: 0px;
     padding: 0px;
