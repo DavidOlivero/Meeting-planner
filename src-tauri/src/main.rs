@@ -5,9 +5,8 @@
 
 use tauri::{CustomMenuItem, Menu, Submenu};
 
-// Comands
-#[tauri::command]
-async fn open_meeting_info(handle: tauri::AppHandle) {
+// Functions
+fn meeting_info_window(handle: tauri::AppHandle) {
   tauri::WindowBuilder::new(
     &handle,
     "info",
@@ -21,8 +20,7 @@ async fn open_meeting_info(handle: tauri::AppHandle) {
   .unwrap();
 }
 
-#[tauri::command]
-async fn open_settings(handle: tauri::AppHandle) {
+fn settings_window(handle: tauri::AppHandle) {
   tauri::WindowBuilder::new(
     &handle,
     "settings",
@@ -36,6 +34,17 @@ async fn open_settings(handle: tauri::AppHandle) {
   .unwrap();
 }
 
+// Comands
+#[tauri::command]
+async fn open_meeting_info(handle: tauri::AppHandle) {
+  meeting_info_window(handle)
+}
+
+#[tauri::command]
+async fn open_settings(handle: tauri::AppHandle) {
+  settings_window(handle)
+}
+
 fn main() {
   // Menu
   let settings = CustomMenuItem::new("Ajustes".to_string(), "Ajustes");
@@ -46,8 +55,8 @@ fn main() {
   tauri::Builder::default()
         // Main window
         .setup(|app| {
-          let handle = app.handle();
-          let default_window = tauri::WindowBuilder::new(
+          let handle = app.handle(); // Created App handle
+          let default_window = tauri::WindowBuilder::new( // Created the main window
             app,
             "main-window",
             tauri::WindowUrl::App("index.html".into()),
@@ -59,39 +68,20 @@ fn main() {
           .menu(menu)
           .build()?;
         
+          // Handling menu cases          
           let default_window = default_window.clone();
           default_window.on_menu_event(move |event| {
             match event.menu_item_id() {
               "Ajustes" => {
                 let handle = handle.clone();
                 std::thread::spawn(move || {
-                  tauri::WindowBuilder::new(
-                    &handle,
-                    "settings",
-                    tauri::WindowUrl::App("settings.html".into())
-                  )
-                  .title("Settings")
-                  .resizable(false)
-                  .maximized(false)
-                  .inner_size(800.0, 600.0)
-                  .build()
-                  .unwrap();
+                  settings_window(handle)
                 });
               },
               "Información de reuniones" => {
                 let handle = handle.clone();
                 std::thread::spawn(move || {
-                  tauri::WindowBuilder::new(
-                    &handle,
-                    "info",
-                    tauri::WindowUrl::App("meeting_info.html".into())
-                  )
-                  .title("Meeting info")
-                  .resizable(false)
-                  .maximized(false)
-                  .inner_size(500.0, 700.0)
-                  .build()
-                  .unwrap();
+                  meeting_info_window(handle)
                 });
               },
               _ => {}
