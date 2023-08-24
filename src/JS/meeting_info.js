@@ -2,8 +2,27 @@ const { invoke } = window.__TAURI__.tauri
 
 render_value = true
 
-const delete_elements = () => {
-    $(".i-elements").each(function () {        
+// Delete all meetings past one year
+const delete_old_meetings = () => {
+    Object.values(meetings).forEach((element) => {
+        const id = element[1].id.replace(/ /g, "_")
+        const month = element[1].date.split("/")[0]
+        const year = element[1].date.split("/")[2]
+
+        const currently_month = new Date().getMonth() + 1
+        const currently_year = new Date().getFullYear()
+
+        if ((currently_year - year) === 1 && Math.abs((year - currently_year) * 12 + (month - currently_month)) >= 6) {
+            delete meetings[id]
+            localStorage.setItem("Meetings", JSON.stringify(meetings))
+        }
+    })
+}
+
+
+// Delete all incons trash and edit from main window meetings
+const delete_icons_trash_edit = () => {
+    $(".i-elements").each(function () {
         this.remove()
     })
 }
@@ -17,7 +36,7 @@ const search_function = () => {
                 const element = $(this)
                 const p_element = element.find(".id")
                 const text = p_element.text().toLowerCase()
-                
+
                 if (text.includes($("#search").val().toLowerCase())) {
                     element.css("visibility", "visible")
                 } else {
@@ -25,7 +44,7 @@ const search_function = () => {
                     i++
                 }
             })
-            
+
             if (i ===  $(".element").length) {
                 $("#unresult").show()
             } else {
@@ -100,7 +119,7 @@ $(document).ready(() => {
     const search_button =  $("#search-button")
     const glass = $(".fa-magnifying-glass")
 
-    search_button.click(() => { 
+    search_button.click(() => {
         search_function()
     })
 
@@ -139,9 +158,10 @@ $(document).ready(() => {
     $(window).on("storage", (event) => {
         if (event.originalEvent.key === "Meetings") {
             meetings = JSON.parse(localStorage.getItem("Meetings"))
+            delete_old_meetings()
             render_elements()
             update_empity()
-            delete_elements()
+            delete_icons_trash_edit()
             set_left_date()
             set_delay_time()
         }
@@ -188,9 +208,10 @@ $(document).ready(() => {
         })
     })
 
+    delete_old_meetings()
     render_elements()
     update_empity()
-    delete_elements()
+    delete_icons_trash_edit()
     set_left_date()
     set_delay_time()
 })
