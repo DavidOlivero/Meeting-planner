@@ -100,26 +100,62 @@ $(document).ready(() => {
 
     if (name && sketch && congregation && date && id && value) {
       let comprobate = false
+      let old_data = false
       Object.values(meetings).forEach((val) => {
+        const month = val[1].date.split("/")[0]
+        const year = parseInt(val[1].date.split("/")[2])
+
+        const currently_month = new Date().getMonth() + 1
+        const currently_year = new Date().getFullYear()
+        
         if (val[0].includes(id.replace(/ /g, "-"))) {
           comprobate = true
           return
+        } else if (year < currently_year || year === currently_year && Math.abs((year - currently_year) * 12 + (month - currently_month)) < currently_month) {
+          old_data = true
         }
       })
 
       if (!comprobate) {
-        const code = `<li class="element" id=${id.replace(/ /g, "-")}>
-                        <div>
-                          <p class="id">${id}</p>
-                          <p class="date">${date}</p>
-                        </div>
-                        <div class="i-elements">
-                          <i class="fa-solid fa-file-pen"></i>
-                          <i class="fa-solid fa-trash-can"></i>
-                        </div>
-                      </li>`
-        
-        const data = {
+        if (!old_data) {
+          const code = `<li class="element" id=${id.replace(/ /g, "-")}>
+                          <div>
+                            <p class="id">${id}</p>
+                            <p class="date">${date}</p>
+                          </div>
+                          <div class="i-elements">
+                            <i class="fa-solid fa-file-pen"></i>
+                            <i class="fa-solid fa-trash-can"></i>
+                          </div>
+                        </li>`
+          
+          const data = {
+            name: name,
+            sketch: sketch,
+            congregation: congregation,
+            date: date,
+            id: id
+          }
+    
+    
+          meetings[id.replace(/ /g, "_")] = [code, data]
+    
+          localStorage.setItem("Meetings", JSON.stringify(meetings))
+          render_elements()
+          update_empity()
+          evaluate_by_date(feature, false)
+          hide_register()
+        } else {
+          alert("La reunión que está intentando guardar tiene una fecha anterior a la actual")
+        }
+      } else {
+        alert("El elemento ya existe, si se trata de otra persona o de " + 
+        "datos distintos, considere cambiar el nombre del identificador")
+      }
+    } else if (!value) {
+      if (!old_date) {
+        const old_data = JSON.stringify(meetings[old_id][1])
+        let new_data = {
           name: name,
           sketch: sketch,
           congregation: congregation,
@@ -127,44 +163,25 @@ $(document).ready(() => {
           id: id
         }
   
+        new_data = JSON.stringify(new_data)
   
-        meetings[id.replace(/ /g, "_")] = [code, data]
+        let new_meetings = JSON.stringify(meetings)
+        new_meetings = new_meetings.replace(old_id, id.replace(/ /g, "_"))
+        new_meetings = new_meetings.replace(old_id.replace(/_/g, "-"), id.replace(/ /g, "-"))
+        new_meetings = new_meetings.replace(old_id.replace(/_/g, " "), id)
+        new_meetings = new_meetings.replace(old_date, date)
+        new_meetings = new_meetings.replace(old_data, new_data)
   
-        localStorage.setItem("Meetings", JSON.stringify(meetings))
+        meetings = JSON.parse(new_meetings)
+  
+        localStorage.setItem("Meetings", new_meetings)
         render_elements()
         update_empity()
         evaluate_by_date(feature, false)
         hide_register()
       } else {
-        alert("El elemento ya existe, si se trata de otra persona o de " + 
-        "datos distintos, considere cambiar el nombre del identificador")
+        alert("La reunión que está intentando editar tiene una fecha anterior a la actual")
       }
-    } else if (!value) {
-      const old_data = JSON.stringify(meetings[old_id][1])
-      let new_data = {
-        name: name,
-        sketch: sketch,
-        congregation: congregation,
-        date: date,
-        id: id
-      }
-
-      new_data = JSON.stringify(new_data)
-
-      let new_meetings = JSON.stringify(meetings)
-      new_meetings = new_meetings.replace(old_id, id.replace(/ /g, "_"))
-      new_meetings = new_meetings.replace(old_id.replace(/_/g, "-"), id.replace(/ /g, "-"))
-      new_meetings = new_meetings.replace(old_id.replace(/_/g, " "), id)
-      new_meetings = new_meetings.replace(old_date, date)
-      new_meetings = new_meetings.replace(old_data, new_data)
-
-      meetings = JSON.parse(new_meetings)
-
-      localStorage.setItem("Meetings", new_meetings)
-      render_elements()
-      update_empity()
-      evaluate_by_date(feature, false)
-      hide_register()
     } else {
       alert("Debes llenar todos los campos antes de continuar.")
     }

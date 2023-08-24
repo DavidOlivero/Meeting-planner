@@ -2,7 +2,7 @@ const { invoke } = window.__TAURI__.tauri
 
 render_value = true
 
-// Delete all meetings past one year
+// Delete all meetings past year and a half
 const delete_old_meetings = () => {
     Object.values(meetings).forEach((element) => {
         const id = element[1].id.replace(/ /g, "_")
