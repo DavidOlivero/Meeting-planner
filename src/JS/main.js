@@ -98,32 +98,36 @@ $(document).ready(() => {
 
     const value = old_id === undefined
 
+    // Comprobate if the date is currentyly
+    let old_data = false
+    const date_array = date.split("/")
+
+    const date_value = new Date(date_array[2], (date_array[0] - 1), date_array[1])
+    const currently_date = new Date()
+
+    old_data = date_value < currently_date
+
+    // Evaluate if the user wants edit or add elements
     if (name && sketch && congregation && date && id && value) {
       let comprobate = false
-      let old_data = false
-      Object.values(meetings).forEach((val) => {
-        const month = val[1].date.split("/")[0]
-        const year = parseInt(val[1].date.split("/")[2])
-
-        const currently_month = new Date().getMonth() + 1
-        const currently_year = new Date().getFullYear()
-        
+      
+      // Comprobating if the user is try add a element with a existent id
+      Object.values(meetings).forEach((val) => {        
         if (val[0].includes(id.replace(/ /g, "-"))) {
           comprobate = true
           return
-        } else if (year < currently_year || year === currently_year && Math.abs((year - currently_year) * 12 + (month - currently_month)) < currently_month) {
-          old_data = true
         }
       })
 
       if (!comprobate) {
-        if (!old_data) {
+        if (!old_data) {          
           const code = `<li class="element" id=${id.replace(/ /g, "-")}>
                           <div>
                             <p class="id">${id}</p>
                             <p class="date">${date}</p>
                           </div>
                           <div class="i-elements">
+                            <i class="fa-brands fa-whatsapp"></i>
                             <i class="fa-solid fa-file-pen"></i>
                             <i class="fa-solid fa-trash-can"></i>
                           </div>
@@ -146,14 +150,14 @@ $(document).ready(() => {
           evaluate_by_date(feature, false)
           hide_register()
         } else {
-          alert("La reunión que está intentando guardar tiene una fecha anterior a la actual")
+          alert("Asergúrese que la fecha sea posterior a la actual")
         }
       } else {
         alert("El elemento ya existe, si se trata de otra persona o de " + 
         "datos distintos, considere cambiar el nombre del identificador")
       }
     } else if (!value) {
-      if (!old_date) {
+      if (!old_data) {
         const old_data = JSON.stringify(meetings[old_id][1])
         let new_data = {
           name: name,
@@ -180,7 +184,7 @@ $(document).ready(() => {
         evaluate_by_date(feature, false)
         hide_register()
       } else {
-        alert("La reunión que está intentando editar tiene una fecha anterior a la actual")
+        alert("Asergúrese que la fecha sea posterior a la actual")
       }
     } else {
       alert("Debes llenar todos los campos antes de continuar.")

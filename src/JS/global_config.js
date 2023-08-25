@@ -6,7 +6,7 @@ $(document).ready(() => {
   let theme = localStorage.getItem("Theme")
   let theme_style = $('link[href="CSS/light.css"]')
 
-  if (theme === "null") {
+  if (theme === null) {
     theme = localStorage.setItem("Theme", "light")
   } else {
     theme_style.attr("href", `CSS/${theme}.css`)
