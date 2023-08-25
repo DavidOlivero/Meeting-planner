@@ -55,8 +55,16 @@ input[type="submit"], input[type="text"] {
     filter: drop-shadow(10px 10px 10px #000);
 }
 
-#info, #info div {
+#info, #info div, #add-name {
     background-color: #222;
+}
+
+#add-name {
+    border: 1px solid #fff;
+}
+
+#add-name button {
+    border: 1px solid #fff;
 }
 
 #info #close {

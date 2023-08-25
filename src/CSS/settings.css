@@ -126,11 +126,23 @@ body {
     transition: 0.5s;
 }
 
-#number-list li .fa-trash-can {
+#number-list div {
+    background-color: transparent;
+    justify-self: end;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+#number-list li i {
     display: none;
     justify-self: end;
     transition: 0.5s;
     background-color: transparent;
+}
+
+#number-list li .fa-file-pen:hover {
+    color: #164a81;
 }
 
 #number-list li .fa-trash-can:hover {
@@ -139,4 +151,41 @@ body {
 
 #number-list li:hover {
     background-color: #257cda;
+}
+
+#numbers {
+    width: 220px;
+}
+
+#add-name {
+    visibility: hidden;
+    width: 200px;
+    height: 180px;
+    position: fixed;
+    top: 50%;
+    left: 55%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+#add-name input {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#add-name button {
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #257cda;
+    transition: 0.5s;
+}
+
+#add-name button:hover {
+    background-color: #1e65b1;
+    cursor: pointer;
 }
