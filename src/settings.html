@@ -13,6 +13,7 @@
     <script src="JS/global_config.js"></script>
     <script src="JS/settings.js"></script>
     <link rel="stylesheet" href="CSS/global_styles.css">
+    <link rel="stylesheet" href="CSS/global_elements_styles.css">
     <link rel="stylesheet" href="CSS/settings.css">
     <link rel="stylesheet" href="CSS/light.css">
 </head>
@@ -55,12 +56,20 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div id="add-name">
-            <label for="name" id="name">Nombre del contacto</label>
-            <input type="text" id="name" placeholder="Juán">
-            <button id="send">Listo</button>
-        </div>
+    <div id="add-name">
+        <label for="name" id="name">Nombre del contacto</label>
+        <input type="text" id="name" placeholder="Juán">
+        <button class="done" id="send">Listo</button>
+        <button class="close">Cerrar</button>
+    </div>
+
+    <div id="edit-contact">
+        <input type="text" placeholder="Juán" id="contact-name">
+        <input type="text" placeholder="+57300000000" id="contact-number">
+        <button class="done" id="send-edit">Listo</button>
+        <button class="close" id="cancel-edit">Cerrar</button>
     </div>
 </body>
 </html>

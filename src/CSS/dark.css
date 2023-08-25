@@ -55,15 +55,15 @@ input[type="submit"], input[type="text"] {
     filter: drop-shadow(10px 10px 10px #000);
 }
 
-#info, #info div, #add-name {
+#info, #info div, #add-name, #edit-contact {
     background-color: #222;
 }
 
-#add-name {
+#add-name , #edit-contact{
     border: 1px solid #fff;
 }
 
-#add-name button {
+#add-name button, #edit-contact button {
     border: 1px solid #fff;
 }
 

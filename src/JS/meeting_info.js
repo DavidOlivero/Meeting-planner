@@ -172,7 +172,7 @@ $(document).ready(() => {
         const info = $("#info")
         const search_area = $("#search-area")
         const element_info = meetings[element_id.replace(/ /g, "_")][1]
-        const all_elements = $("body").children().not("#search-area, #info")
+        const all_elements = "#search-area, #info"
         search_area.css("z-index", "800")
         search_area.css("pointer-events", "none")
 
@@ -199,11 +199,13 @@ $(document).ready(() => {
         `)
         info.fadeIn()
 
-        all_elements.addClass("inactive")
+        opacity_efect(all_elements, true)
 
         $("#close").click(() => {
             info.fadeOut()
-            all_elements.removeClass("inactive")
+            
+            opacity_efect(all_elements, false)
+
             search_area.css("pointer-events", "auto")
         })
     })

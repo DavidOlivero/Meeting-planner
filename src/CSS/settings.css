@@ -157,10 +157,10 @@ body {
     width: 220px;
 }
 
-#add-name {
+#add-name, #edit-contact {
     visibility: hidden;
     width: 200px;
-    height: 180px;
+    height: 200px;
     position: fixed;
     top: 50%;
     left: 55%;
@@ -173,19 +173,31 @@ body {
     text-align: center;
 }
 
-#add-name input {
+#add-name input, #edit-contact input{
     padding: 5px;
     border-radius: 5px;
 }
 
-#add-name button {
+#add-name button, #edit-contact button {
     border-radius: 10px;
     padding: 5px;
-    background-color: #257cda;
     transition: 0.5s;
 }
 
-#add-name button:hover {
+.done {
+    background-color: #257cda;
+}
+
+.close {
+    background-color: #FF0707;
+}
+
+.done:hover {
     background-color: #1e65b1;
+    cursor: pointer;
+}
+
+.close:hover {
+    background-color: #bd0909;
     cursor: pointer;
 }
