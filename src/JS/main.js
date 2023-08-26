@@ -62,7 +62,7 @@ $(document).ready(() => {
     }
 
     register_window.fadeIn();
-    opacity_efect("#register", true)
+    opacity_efect("#register, #ui-datepicker-div", true)
   }
 
   const hide_register = () => {
