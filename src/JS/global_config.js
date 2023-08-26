@@ -1,4 +1,5 @@
 let meetings =  JSON.parse(localStorage.getItem("Meetings")) || {}
+let number = JSON.parse(localStorage.getItem("Contacts")) || []
 let color
 let data
 
@@ -96,6 +97,25 @@ const evaluate_by_date = (feature, comprobate) => {
     if (check === comprobate) {
       feature(time_left)
     }
+  })
+}
+
+const render_contacts = () => {
+  const number_list = $("#number-list")
+  number_list.empty()
+
+  number.forEach(element => {
+      const info = element.split("/")
+
+      number_list.append(`<li id="${info[1].replace(/ /g, "-")}" class="contact off">${info[1]} <div><i class="fa-solid fa-file-pen"></i> <i class="fa-solid fa-trash-can"></i></div></li>`)
+  })
+
+  $(document).on("mouseenter", "#number-list li", function () {
+      $(this).find("i").show()
+  })
+
+  $(document).on("mouseleave", "#number-list li", function () {
+      $(this).find("i").hide()
   })
 }
 

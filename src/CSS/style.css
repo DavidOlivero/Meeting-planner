@@ -18,6 +18,10 @@
   transition: 0.5s;
 }
 
+.i-elements .fa-whatsapp {
+  font-size: 25px;
+}
+
 .fa-file-pen:hover {
   color: #004c9c;
   transition: 0.5s;
@@ -25,6 +29,11 @@
 
 .fa-trash-can:hover {
   color: #FF0707;
+  transition: 0.5s;
+}
+
+.i-elements .fa-whatsapp:hover {
+  color: #44db17;
   transition: 0.5s;
 }
 
@@ -132,4 +141,62 @@ input[type="submit"] {
 input[type="text"] {
   padding: 5px;
   border-radius: 10px;
+}
+
+#choose-contacts {
+  display: none;
+  width: 300px;
+  height: 500px;
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+}
+
+#choose-contacts div {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+}
+
+#choose-contacts button {
+  margin: 10px;
+  padding: 7px;
+  border-radius: 10px;
+}
+
+#choose-contacts #cancel-selection {
+  background-color: #FF0707;
+  transition: 0.5s;
+}
+
+#choose-contacts #send {
+  background-color: #257cda;
+  transition: 0.5s;
+}
+
+#choose-contacts #cancel-selection:hover {
+  background-color: #b30808;
+}
+
+#choose-contacts #send:hover {
+  background-color: #1c5592;
+}
+
+#choose-contacts h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#choose-contacts ul {
+  list-style: none;
+}
+
+#choose-contacts li {
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
 }

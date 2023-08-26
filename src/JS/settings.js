@@ -1,5 +1,4 @@
 const { invoke } = window.__TAURI__.tauri
-let number = JSON.parse(localStorage.getItem("Contacts")) || []
 
 const save_contact = (add_number_input, add_name) => {
     if(add_number_input.val()) {
@@ -7,25 +6,6 @@ const save_contact = (add_number_input, add_name) => {
 
         opacity_efect("#add-name", true)
     }
-}
-
-const render_contacts = () => {
-    const number_list = $("#number-list")
-    number_list.empty()
-
-    number.forEach(element => {
-        const info = element.split("/")
-
-        number_list.append(`<li id="${info[1].replace(/ /g, "-")}">${info[1]} <div><i class="fa-solid fa-file-pen"></i> <i class="fa-solid fa-trash-can"></i></div></li>`)
-    })
-
-    $(document).on("mouseenter", "#number-list li", function () {
-        $(this).find("i").show()
-    })
-
-    $(document).on("mouseleave", "#number-list li", function () {
-        $(this).find("i").hide()
-    })
 }
 
 $(document).ready(() => {
@@ -141,11 +121,17 @@ $(document).ready(() => {
         confirm("Está seguro de que descea eliminar el contacto")
             .then((value) => {
                 if (value) {
-                    const text = $(this).closest("li").attr("id")
-                    const index = number.indexOf(text)
+                    const text = $(this).closest("li").attr("id").trim().replace(/-/g, " ")
+                    
+                    const criterion = (element) => {
+                        return element.includes(text)
+                    }
+
+                    const index = number.findIndex(criterion)
                     number.splice(index, 1)
                     localStorage.setItem("Contacts", JSON.stringify(number))
-                    render_contacts()      
+
+                    render_contacts()
                 }
             })
     })

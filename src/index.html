@@ -10,7 +10,11 @@
   <link rel="stylesheet" href="assets/jquery-ui-1.13.2.custom/jquery-ui.min.css">
   <link rel="stylesheet" href="assets/jquery-ui-1.13.2.custom/jquery-ui.structure.min.css">
   <link rel="stylesheet" href="assets/jquery-ui-1.13.2.custom/jquery-ui.theme.min.css">
+  <!-- <import AbstractView from "./AbstractView.js";
+  import dotenv from './views/js/static/frontend/dotenv';
+  dotenv.config(); class="module"> -->
   <script src="JS/global_config.js"></script>
+  <script src="JS/.envconfig.js"></script>
   <script src="JS/main.js"></script>
   <link rel="stylesheet" href="CSS/global_styles.css">
   <link rel="stylesheet" href="CSS/global_elements_styles.css">
@@ -62,6 +66,15 @@
         <input type="submit" value="Guardar" id="save">
       </div>
     </form>
+  </div>
+
+  <div id="choose-contacts">
+    <h4>Seleccione los contactos</h4>
+    <ul id="number-list"></ul>
+    <div>
+      <button id="cancel-selection">Cancelar</button>
+      <button id="send">Enviar</button>
+    </div>
   </div>
 </body>
 </html>

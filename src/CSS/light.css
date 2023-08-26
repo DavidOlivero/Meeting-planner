@@ -47,7 +47,7 @@ input[type="submit"], input[type="text"] {
     background-color: rgb(136, 136, 136);
 }
 
-#light div, #dark div {
+#light div, #dark div, #choose-contacts {
     border: 1px solid #000;
 }
 
@@ -63,7 +63,7 @@ input[type="submit"], input[type="text"] {
     border: 1px solid #000;
 }
 
-#add-name button, #edit-contact button {
+#add-name button, #edit-contact button, #choose-contacts button {
     border: 1px solid #000;
 }
 
@@ -79,3 +79,12 @@ input[type="submit"], input[type="text"] {
 #number-list li {
     background-color: rgb(136, 136, 136);
 }
+
+#number-list .on {
+    background-color: #0D76E5;
+  }
+  
+  #number-list .off {
+    background-color: rgb(136, 136, 136);
+  }
+  
