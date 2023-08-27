@@ -35,7 +35,7 @@ const send_whatsapp = (contacts_for_send, contacts_name_for_send, id_for_extract
     const data = new URLSearchParams({
         To: `whatsapp:+57${number}`,
         From: 'whatsapp:+14155238886',
-        Body: `Your appointment is coming up on July 21 at 3PM Hola hermano ${contacts_name_for_send[index]} espero se encuentre bien, le habla Eliú, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación Central de Corozal en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`
+        Body: `Your appointment is coming up on July 21 at 3PM Hola hermano ${contacts_name_for_send[index]} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación Central de Corozal en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`
     });
 
     // Almacenamos todas las promesas en el array
@@ -73,6 +73,11 @@ $(document).ready(() => {
   const register_window = $("#register")
   const contacts = $("#choose-contacts")
   let id_for_extract_meeting_info
+
+  if (user_name === "") {
+    $("#get-name").css("visibility", "visible")
+    opacity_efect("#get-name", true)
+  }
 
   let old_id
   let old_date
@@ -144,6 +149,14 @@ $(document).ready(() => {
     id_for_extract_meeting_info = $(this).closest(".element").attr("id").trim().replace(/-/g, "_")
     contacts.fadeIn()
     opacity_efect("#choose-contacts, .module", true)
+  })
+
+  $("#send-user-name").click(() => {
+    $("#get-name").css("visibility", "hidden")
+    opacity_efect("#get-name", false)
+    
+    localStorage.setItem("User_name", $("#user-name").val())
+    user_name = localStorage.getItem("User_name")
   })
 
   $("#save").click(() => {

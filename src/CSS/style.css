@@ -200,3 +200,7 @@ input[type="text"] {
   margin: 10px;
   padding: 10px;
 }
+
+#get-name {
+  visibility: hidden;
+}

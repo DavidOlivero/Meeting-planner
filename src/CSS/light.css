@@ -84,7 +84,11 @@ input[type="submit"], input[type="text"] {
     background-color: #0D76E5;
   }
   
-  #number-list .off {
+#number-list .off {
     background-color: rgb(136, 136, 136);
-  }
+}
+
+#get-name, #user-name, #send-user-name {
+    border: 1px solid #000;
+}
   

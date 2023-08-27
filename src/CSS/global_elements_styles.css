@@ -38,3 +38,41 @@
     opacity: 0.7;
     pointer-events: none;
 }
+
+#get-name {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid: 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;
+    padding: 10px;
+}
+  
+#user-name {
+    margin: 15px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#send-user-name {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #0D76E5;
+    transition: 0.5s;
+}
+
+#send-user-name:hover {
+    background-color: #0953a3;
+}

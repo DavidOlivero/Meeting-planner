@@ -1,5 +1,6 @@
 let meetings =  JSON.parse(localStorage.getItem("Meetings")) || {}
 let number = JSON.parse(localStorage.getItem("Contacts")) || []
+let user_name = localStorage.getItem("User_name") || ""
 let color
 let data
 
@@ -107,7 +108,7 @@ const render_contacts = () => {
   number.forEach(element => {
       const info = element.split("/")
 
-      number_list.append(`<li id="${info[1].replace(/ /g, "-")}" class="contact off">${info[1]} <div><i class="fa-solid fa-file-pen"></i> <i class="fa-solid fa-trash-can"></i></div></li>`)
+      number_list.append(`<li id="${info[1].replace(/ /g, "-")}" class="contact off">${info[1]} <div><i class="fa-solid fa-share" title="Invitar contacto a twilio"></i> <i class="fa-solid fa-file-pen" title="Editar contacto"></i> <i class="fa-solid fa-trash-can" title="Eliminar contacto"></i></div></li>`)
   })
 
   $(document).on("mouseenter", "#number-list li", function () {

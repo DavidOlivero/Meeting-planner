@@ -11,12 +11,14 @@ const save_contact = (add_number_input, add_name) => {
 $(document).ready(() => {
     const theme = $("#theme")
     const WhatSapp = $("#WhatSapp")
+    const user_settings = $("#user-settings")
 
     const theme_option = $("li:contains('Apariencia')")
     const light_button = $("#light")
     const dark_button = $("#dark")
 
     const WhatSapp_option = $("li:contains('WhatSapp')")
+    const user_settings_option = $("li:contains('Configuraciones de usuario')")
 
     const add_number_input = $("#contact input")
     const edit_contact = $("#edit-contact")
@@ -29,10 +31,18 @@ $(document).ready(() => {
     theme_option.click( function () {
         theme.show()
         WhatSapp.hide()
+        user_settings.hide()
     })
 
     WhatSapp_option.click( function () {        
         WhatSapp.show()
+        theme.hide()
+        user_settings.hide()
+    })
+
+    user_settings_option.click(() => {
+        user_settings.show()
+        WhatSapp.hide()
         theme.hide()
     })
     
@@ -44,6 +54,15 @@ $(document).ready(() => {
     dark_button.click(() => {
         localStorage.setItem("Theme", "dark")
         location.reload()
+    })
+
+    $("#send-user-name").click(() => {
+        const element = $("#user-name")
+        
+        localStorage.setItem("User_name", element.val())
+        element.val("")
+
+        user_name = localStorage.getItem("User_name")
     })
 
     $(".fa-plus").click(() => {
@@ -84,6 +103,22 @@ $(document).ready(() => {
         opacity_efect(element, false)
 
         add_number_input.val("")
+    })
+
+    $(document).on("click", ".fa-share", function () {
+        const id = $(this).parent().parent().attr("id").trim().replace(/-/g, " ")
+        let tell
+
+        number.forEach((element) => {
+            if (element.includes(id)) {
+                tell = element.split("/")[0]
+            }
+        })
+
+        const message = encodeURIComponent(`Hola hermano soy ${user_name} el organizador de conferencias de la Congregación Central le escribo para que guarde este contacto en su celular por medio de este link y le da a enviar a ese mensaje que está allí, lo que pasa es que nosotros manejamos un programa para cistematizar la tarea de organizar las reuniones y por medio de ese contacto el programa manda los recordatorios de las conferencias a los hermanos, por eso necesita que tenga ese contacto guardado. ¡Gracias! https://wa.me/+14155238886?text=join%20nervous-shirt`)
+        
+        const url = `https://wa.me/${tell}?text=${message}`
+        window.open(url)
     })
 
     $(document).on("click", ".fa-file-pen", function () {

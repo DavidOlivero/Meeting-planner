@@ -141,6 +141,11 @@ body {
     background-color: transparent;
 }
 
+.fa-share:hover {
+    color: #0bb421;
+    transition: 0.5s;
+}
+
 #number-list li .fa-file-pen:hover {
     color: #164a81;
 }
@@ -200,4 +205,23 @@ body {
 .close:hover {
     background-color: #bd0909;
     cursor: pointer;
+}
+
+#user-settings {
+    display: none;
+    padding-left: 35vw;
+}
+
+#get-name {
+    margin-left: 15vw;
+    width: 250px;
+    height: 200px;
+
+    #user-name {
+        height: 40px;
+    }
+
+    #send-user-name {
+        width: 50px;
+    }
 }
