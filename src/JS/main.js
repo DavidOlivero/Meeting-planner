@@ -27,6 +27,43 @@ const close_contacts = (contacts) => {
   })
 }
 
+const send_whatsapp = (contacts_for_send, contacts_name_for_send, id_for_extract_meeting_info) => new Promise((resolve, _rejec) => {
+  let promises = [] // Array para almacenar todas las promesas credas por el fetch
+  
+  contacts_for_send.forEach((number, index) => {
+    const url = 'https://api.twilio.com/2010-04-01/Accounts/AC783e1d81f12583c95f6c6d126ce21c85/Messages.json';
+    const data = new URLSearchParams({
+        To: `whatsapp:+57${number}`,
+        From: 'whatsapp:+14155238886',
+        Body: `Your appointment is coming up on July 21 at 3PM Hola hermano ${contacts_name_for_send[index]} espero se encuentre bien, le habla Eliú, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación Central de Corozal en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`
+    });
+
+    // Almacenamos todas las promesas en el array
+    promises.push(
+      fetch(url, {
+          method: 'POST',
+          headers: {
+              'Authorization': `Basic ${btoa(`AC783e1d81f12583c95f6c6d126ce21c85:${window.TOKEN}`)}`,
+              'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: data
+      })
+      .then(() => true)
+      .catch(() => false)
+    )
+  })
+
+  // Esperar a que todas las promesas sean resueltas correctamente
+  Promise.all(promises)
+    .then(results => {
+      const done_message = results.every(result => result)
+      resolve(done_message)
+    })
+    .catch(() => {
+      alert("Ha ocurrido un error al tratar de enviar el mensaje asegúrese de que cuenta con conección a internet")
+    })
+})
+
 $(document).ready(() => {
   const name_input = $("#name")
   const sketch_input = $("#sketch")
@@ -252,7 +289,7 @@ $(document).ready(() => {
   $("#send").click(() => {
     let contacts_for_send = []
     let contacts_name_for_send = []
-    let done_message = false
+    
     
     $(".contact").each(function () {
       const element = $(this)
@@ -267,28 +304,11 @@ $(document).ready(() => {
     })
     close_contacts(contacts)
 
-    contacts_for_send.forEach(async (number, index) => {
-      const url = 'https://api.twilio.com/2010-04-01/Accounts/AC783e1d81f12583c95f6c6d126ce21c85/Messages.json';
-      const data = new URLSearchParams({
-          To: `whatsapp:+57${number}`,
-          From: 'whatsapp:+14155238886',
-          Body: `Your appointment is coming up on July 21 at 3PM Hola hermano ${contacts_name_for_send[index]} espero se encuentre bien, le habla Eliú, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación Central de Corozal en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`
-      });
-  
-      await fetch(url, {
-          method: 'POST',
-          headers: {
-              'Authorization': `Basic ${btoa(`AC783e1d81f12583c95f6c6d126ce21c85:${window.TOKEN}`)}`,
-              'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: data
+    send_whatsapp(contacts_for_send, contacts_name_for_send, id_for_extract_meeting_info)
+      .then((done_message) => {
+        !done_message ? 
+        alert("Ha ocurrido un error al intentar enviar el mensaje, por favor verifique que el remitente cumpla los pasos mencionados en configuración") : 
+        alert("El mensaje fue enviado exitosamente")
       })
-      .then(() => done_message = false)
-      .catch(() => done_message = true);
-    })
-
-    !done_message ? 
-    alert("Ha ocurrido un error al intentar enviar el mensaje, por favor verifique que el remitente cumpla los pasos mencionados en configuración") : 
-    alert("El mensaje fue enviado exitosamente")
   })
 })
