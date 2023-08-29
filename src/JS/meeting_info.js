@@ -196,6 +196,14 @@ $(document).ready(() => {
             <p><strong>Fecha</strong></p>
             <p>${element_info.date}</p>
         </div>
+        <div id=president>
+            <p><strong>Presidente</strong></p>
+            <p>${element_info.president}</p>
+        </div>
+        <div id=reader>
+            <p><strong>Lector</strong></p>
+            <p>${element_info.reader}</p>
+        </div>
         `)
         info.fadeIn()
 

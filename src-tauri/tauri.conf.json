@@ -7,7 +7,7 @@
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "meeting_planner",
+    "productName": "Meeting planner",
     "version": "0.0.0"
   },
   "tauri": {

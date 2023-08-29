@@ -60,14 +60,10 @@ const render_elements = () => {
 
   $(document).on("mouseenter", ".element", function () {
     $(this).find(".i-elements i").show()
-    
-    
   })
 
   $(document).on("mouseleave", ".element", function () {
     $(this).find(".i-elements i").hide()
-
-    
   })
 }
 

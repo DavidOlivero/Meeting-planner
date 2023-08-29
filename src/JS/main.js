@@ -14,7 +14,7 @@ async function open_settings() {
 }
 
 const feature = () => {
-  $("#" + data.id.replace(/ /g, "-")).css("display", "none")
+  $("#" + data.id.replace(/ /g, "-")).remove()
 }
 
 const close_contacts = (contacts) => {
@@ -69,6 +69,8 @@ $(document).ready(() => {
   const sketch_input = $("#sketch")
   const congregation_input = $("#congregation")
   const date_input = $("#date")
+  const president_input = $("#president")
+  const reader_input = $("#reader")
   const id_input = $("#id")
   const register_window = $("#register")
   const contacts = $("#choose-contacts")
@@ -87,6 +89,8 @@ $(document).ready(() => {
       sketch_input.val("")
       congregation_input.val("")
       date_input.val("")
+      president_input.val("")
+      reader_input.val("")
       id_input.val("")
 
       old_id = undefined
@@ -164,6 +168,8 @@ $(document).ready(() => {
     const sketch = sketch_input.val()
     const congregation = congregation_input.val()
     const date = date_input.val()
+    const president = president_input.val()
+    const reader = reader_input.val()
     const id = id_input.val()
 
     const value = old_id === undefined
@@ -178,7 +184,7 @@ $(document).ready(() => {
     old_data = date_value < currently_date
 
     // Evaluate if the user wants edit or add elements
-    if (name && sketch && congregation && date && id && value) {
+    if (name && sketch && congregation && date && president && reader && id && value) {
       let comprobate = false
       
       // Comprobating if the user is try add a element with a existent id
@@ -208,6 +214,8 @@ $(document).ready(() => {
             sketch: sketch,
             congregation: congregation,
             date: date,
+            president: president,
+            reader: reader,
             id: id
           }
     
@@ -272,16 +280,11 @@ $(document).ready(() => {
     show_register(id)
   })
 
-  $("#date").datepicker()
-  render_elements()
-  update_empity()
-  evaluate_by_date(feature, false)
-  render_contacts()
-
   $(window).on('storage', (event) => {
     if (event.originalEvent.key === "Contacts") {
       number = JSON.parse(localStorage.getItem("Contacts"))
       render_contacts()
+      $(".contact div").remove()
     }
   })
 
@@ -320,8 +323,17 @@ $(document).ready(() => {
     send_whatsapp(contacts_for_send, contacts_name_for_send, id_for_extract_meeting_info)
       .then((done_message) => {
         !done_message ? 
-        alert("Ha ocurrido un error al intentar enviar el mensaje, por favor verifique que el remitente cumpla los pasos mencionados en configuración") : 
+        alert(`Ha ocurrido un error al intentar enviar el mensaje, por favor verifique que el remitente cumpla los pasos mencionados en 
+        configuración o que cuente con conección a internet`) : 
         alert("El mensaje fue enviado exitosamente")
       })
   })
+  
+  $("#date").datepicker()
+  render_elements()
+  render_contacts()
+  $(".contact div").remove()
+
+  update_empity()
+  evaluate_by_date(feature, false)
 })

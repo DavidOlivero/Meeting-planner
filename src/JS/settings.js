@@ -2,9 +2,13 @@ const { invoke } = window.__TAURI__.tauri
 
 const save_contact = (add_number_input, add_name) => {
     if(add_number_input.val()) {
-        add_name.css("visibility", "visible")
-
-        opacity_efect("#add-name", true)
+        if (typeof add_number_input.val() === "number") {
+            add_name.css("visibility", "visible")
+    
+            opacity_efect("#add-name", true)
+        } else {
+            alert("El número de contacto proporcionado no es válido")
+        }
     }
 }
 

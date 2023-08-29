@@ -65,6 +65,7 @@ fn main() {
           .fullscreen(false)
           .inner_size(800.0, 600.0)
           .resizable(true)
+          .min_inner_size(550.0, 600.0)
           .menu(menu)
           .build()?;
         
