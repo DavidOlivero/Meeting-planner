@@ -34,6 +34,20 @@ fn settings_window(handle: tauri::AppHandle) {
   .unwrap();
 }
 
+fn pdf_file(handle: tauri::AppHandle) {
+  tauri::WindowBuilder::new(
+    &handle,
+    "pdf_file",
+    tauri::WindowUrl::App("pdffile.html".into())
+  )
+  .title("PDF file")
+  .resizable(true)
+  .maximized(false)
+  .inner_size(800.0, 600.0)
+  .build()
+  .unwrap();
+}
+
 // Comands
 #[tauri::command]
 async fn open_meeting_info(handle: tauri::AppHandle) {
@@ -45,11 +59,17 @@ async fn open_settings(handle: tauri::AppHandle) {
   settings_window(handle)
 }
 
+#[tauri::command]
+async fn open_pdffile(handle: tauri::AppHandle) {
+  pdf_file(handle)
+}
+
 fn main() {
   // Menu
   let settings = CustomMenuItem::new("Ajustes".to_string(), "Ajustes");
   let meeting_info = CustomMenuItem::new("Información de reuniones".to_string(), "Información de reuniones");
-  let sub_menu = Submenu::new("Archivo", Menu::new().add_item(settings).add_item(meeting_info));
+  let generate_pdf = CustomMenuItem::new("Generar pdf".to_string(), "Generar pdf");
+  let sub_menu = Submenu::new("Archivo", Menu::new().add_item(settings).add_item(meeting_info).add_item(generate_pdf));
   let menu = Menu::new().add_submenu(sub_menu);
     
   tauri::Builder::default()
@@ -85,13 +105,19 @@ fn main() {
                   meeting_info_window(handle)
                 });
               },
+              "Generar pdf" => {
+                let handle = handle.clone();
+                std::thread::spawn(move || {
+                  pdf_file(handle);
+                });
+              },
               _ => {}
             }
           });
 
           Ok(())
         })
-        .invoke_handler(tauri::generate_handler![open_meeting_info, open_settings])
+        .invoke_handler(tauri::generate_handler![open_meeting_info, open_settings, open_pdffile])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

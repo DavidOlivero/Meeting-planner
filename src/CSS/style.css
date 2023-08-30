@@ -72,6 +72,14 @@
   padding: 10px;
 }
 
+.fa-file-pdf {
+  text-align: center;
+  font-size: 40px;
+  transition: 0.5s;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
 .fa-plus:hover {
   background-color: #0A56A8;
   cursor: pointer;
@@ -84,6 +92,11 @@
 
 .fa-gear:hover {
   color: #797979;
+  cursor: pointer;
+}
+
+.fa-file-pdf:hover {
+  color: #c44242;
   cursor: pointer;
 }
 

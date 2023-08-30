@@ -13,6 +13,10 @@ async function open_settings() {
   await invoke("open_settings", { })
 }
 
+async function generate_pdf() {
+  await invoke("open_pdffile", { })
+}
+
 const feature = () => {
   $("#" + data.id.replace(/ /g, "-")).remove()
 }
@@ -327,6 +331,11 @@ $(document).ready(() => {
         configuración o que cuente con conección a internet`) : 
         alert("El mensaje fue enviado exitosamente")
       })
+  })
+
+  // Generate pdf
+  $(".fa-file-pdf").click(() => {
+    generate_pdf()
   })
   
   $("#date").datepicker()
