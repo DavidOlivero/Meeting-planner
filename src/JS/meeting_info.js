@@ -28,16 +28,15 @@ const delete_icons_trash_edit = () => {
 }
 
 const search_function = () => {
-    const text = $("#search").val().toLowerCase()
+    const search = $("#search").val().toLowerCase()
 
-        if (text) {
+        if (search) {
             let i = 0
             $(".element").each(function () {
                 const element = $(this)
-                const p_element = element.find(".id")
-                const text = p_element.text().toLowerCase()
+                const id = element.find(".id").text().toLowerCase()
 
-                if (text.includes($("#search").val().toLowerCase())) {
+                if (id.includes(search)) {
                     element.css("visibility", "visible")
                 } else {
                     element.css("display", "none")
@@ -215,6 +214,74 @@ $(document).ready(() => {
             opacity_efect(all_elements, false)
 
             search_area.css("pointer-events", "auto")
+        })
+    })
+
+    $(".fa-filter").click(() => {
+        const filter = $("#filter")
+        const form = $("input[type='text'], input[type='date']").not("#search")
+        form.each(function () {$(this).val("")})
+        
+        filter.fadeIn()
+        opacity_efect("#filter", true)
+
+        $("#filter-form").submit((e) => {
+            e.preventDefault()
+
+            const val = $(".element")
+            let info = {}
+
+            form.each(function () {
+                const element = $(this)
+                const id = element.attr("id")
+                info[id] = element.val()
+            })
+
+            let i = 0
+            val.each(function () {
+                const id_val = $(this).attr("id")
+                const data = meetings[id_val.replace(/-/g, "_")][1]
+                const element = $("#" + id_val)
+                
+                if (info.name && !info.name.toLowerCase().includes(data.name.toLowerCase())) {
+                    element.hide()
+                    i++
+                }
+                if (info.sketch && !info.sketch.toLowerCase().includes(data.sketch.toLowerCase())) {
+                    opacity_efect("#filter", false)
+                    i++
+                }
+                if (info.congregation && !info.congregation.toLowerCase().includes(data.congregation.toLowerCase())) {
+                    opacity_efect("#filter", false)
+                    i++
+                }
+                if (info.date1 && info.date2) {
+                    const date1_info = info.date1.split("-")
+                    const date2_info = info.date2.split("-")
+                    const date1 = new Date(date1_info[0], parseInt(date1_info[1] - 1), date1_info[2])
+                    const date2 = new Date(date2_info[0], parseInt(date2_info[1] - 1), date2_info[2])
+
+                    const date_seach = data.date.split("/")
+                    const full_date = new Date(date_seach[2], parseInt(date_seach[0] - 1), date_seach[1])
+
+                    if (full_date < date1 || full_date > date2) {
+                        element.hide()
+                        i++
+                    }
+                } else if (info.date1 && !info.date2 || !info.date1 && info.date2) {
+                    alert("Si está intentando filtral por fechas, asegúrese de colocar el rango de fechas completa.")
+                    return false
+                }
+            })
+
+            filter.fadeOut()
+            opacity_efect("#filter", false)
+
+            if (i ===  $(".element").length) {
+                $("#unresult").show()
+            } else {
+                $("#unresult").hide()
+            }
         })
     })
 

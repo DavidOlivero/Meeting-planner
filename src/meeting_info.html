@@ -21,6 +21,7 @@
     <img id="unresult" src="assets/unresult.png" alt="Sin resultados">
     <div id="search-area">
         <input type="text" name="search" id="search" placeholder="Buscar elementos">
+        <i class="fa-solid fa-filter"></i>
         <i class="fa-solid fa-circle-xmark"></i>
         <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
@@ -32,6 +33,37 @@
 
     <section id="info">
         <button id="close">Cerrar</button>
+    </section>
+
+    <section id="filter">
+        <form action="#" id="filter-form">
+            <div class="option">
+                <label for="name">Por nombre del conferenciante</label>
+                <input type="text" id="name">
+            </div>
+            <div class="option">
+                <label for="sketch">Por nombre de la conferencia</label>
+                <input type="text" id="sketch">
+            </div>
+            <div class="option">
+                <label for="congregation">Por nombre de la congregación</label>
+                <input type="text" id="congregation">
+            </div>
+            <div class="option">
+                <label for="date">Por rango de fecha</label>
+                <div>
+                    <label for="date1">De</label>
+                    <input type="date" id="date1">
+                    <label for="date2">ha</label>
+                    <input type="date" id="date2">
+                </div>
+            </div>
+
+            <div id="controls">
+                <button id="close">Cancelar</button>
+                <input type="submit" value="Aplicar filtro" id="done">
+            </div>
+        </form>
     </section>
 </body>
 </html>

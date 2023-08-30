@@ -19,7 +19,7 @@
     background-color: #fff;
 }
 
-input[type="submit"], input[type="text"] {
+input[type="submit"], input[type="text"], #filter, #controls button {
     border: 1px solid #000;
 }
 
@@ -89,6 +89,10 @@ input[type="submit"], input[type="text"] {
 }
 
 #get-name, #user-name, #send-user-name {
+    border: 1px solid #000;
+}
+
+input[type="date"] {
     border: 1px solid #000;
 }
   

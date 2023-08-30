@@ -105,6 +105,8 @@ $(document).ready(() => {
       sketch_input.val(values.sketch)
       congregation_input.val(values.congregation)
       date_input.val(values.date)
+      president_input.val(values.president)
+      reader_input.val(values.reader)
       id_input.val(values.id)
 
       old_id = id_input.val().replace(/ /g, "_")
