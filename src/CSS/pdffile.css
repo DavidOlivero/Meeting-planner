@@ -24,13 +24,13 @@ table {
     padding: 15px;
     border-collapse: collapse;
     line-height: 30px;
-
 }
 
 thead tr td, .month {
     text-align: center;
     font-weight: bold;
     border: 1px solid #000;
+    padding: 10px;
 }
 
 td {

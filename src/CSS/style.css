@@ -225,7 +225,7 @@ input[type="text"] {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
-  height: 250px;
+  height: 300px;
   border-radius: 10px;
   padding: 20px;
 
@@ -237,8 +237,22 @@ input[type="text"] {
     justify-content: center;
   }
 
-  .fa-paper-plane {
-    background-color: #797979;
+  #groups {
+    display: flex;
+  }
+
+  #continer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 5px;
+  }
+
+  #to-lectures, #to-president {
+    margin-right: 10px;
+  }
+
+  .fa-x, .fa-paper-plane {
     border-radius: 100px;
     width: 2.5em;
     height: 2em;
@@ -246,11 +260,20 @@ input[type="text"] {
     line-height: 2em;
     font-size: 20px;
     padding-right: 3px;
-    position: fixed;
-    right: 0;
-    bottom: 0;
     margin: 10px;
     transition: 0.5s;
+  }
+
+  .fa-x {
+    background-color: #b83333;
+  }
+
+  .fa-paper-plane {
+    background-color: #797979;
+  }
+
+  .fa-x:hover {
+    background-color: #8f0505;
   }
 
   .fa-paper-plane:hover {

@@ -26,7 +26,7 @@ const close_contacts = (contacts) => {
   })
 }
 
-const send_whatsapp = (contacts_for_send, message_default, message_box) => new Promise((resolve, _rejec) => {
+const send_whatsapp = (contacts_for_send, default_message, message_box) => new Promise((resolve, _rejec) => {
   let promises = [] // Array fore save all promeises created in the fetch
   
   contacts_for_send.forEach((number) => {
@@ -36,7 +36,7 @@ const send_whatsapp = (contacts_for_send, message_default, message_box) => new P
     if (custom_message) {
       message = "Your appointment is coming up on July 21 at 3PM 👉 " + custom_message + " Recuerde que mi número es este " + tell + " 👈"
     } else {
-      message = "Your appointment is coming up on July 21 at 3PM 👉 " + message_default + " Recuerde que mi número es este " + tell + " 👈"
+      message = "Your appointment is coming up on July 21 at 3PM 👉 " + default_message + " Recuerde que mi número es este " + tell + " 👈"
     }
     
     const url = 'https://api.twilio.com/2010-04-01/Accounts/AC783e1d81f12583c95f6c6d126ce21c85/Messages.json';
@@ -323,11 +323,14 @@ $(document).ready(() => {
     close_contacts(contacts)
   })
 
-  let message_default
+  let default_message
   const message_box = $("#message")
   let contacts_for_send = []
   let contacts_name_for_send = []
+  const from_lecture = $("#to-lectures")
+  const from_president = $("#to-president")
   $("#send").click(() => {
+    let i = 0
     $(".contact").each(function () {
       const element = $(this)
       
@@ -336,25 +339,45 @@ $(document).ready(() => {
           const info = value.split("/")
           contacts_for_send.push(info[0])
           contacts_name_for_send.push(info[1])
+          i++
         }
       })
     })
     
-    contacts_for_send.forEach((_number, _index) => {
-      message_default = `Hola hermano ${meetings[id_for_extract_meeting_info][1].name} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación Central de Corozal en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`
+    if (i > 0) {
+      $("#message-form").fadeIn()
+      opacity_efect("#message-form", true) 
+    } else {
+      alert("Debe seleccionar al menos un contacto si quiere enviar un mensaje")
+    }
+
+    from_lecture.click(function () {
+      if ($(this).is(":checked")) {
+        message_box.attr("placeholder", `Hola hermano ${meetings[id_for_extract_meeting_info][1].name} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación Central de Corozal en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`)
+      }
     })
-    
-    message_box.attr("placeholder", message_default)
-    $("#message-form").fadeIn()
-    opacity_efect("#message-form", true)
+
+    from_president.click(function () {
+      if ($(this).is(":checked")) {
+        message_box.attr("placeholder", `Hola hermano ${meetings[id_for_extract_meeting_info][1].president} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para la presidencia el día ${meetings[id_for_extract_meeting_info][1].date}. la información del conferenciante es esta: Nombre: ${meetings[id_for_extract_meeting_info][1].name}, congregación: ${meetings[id_for_extract_meeting_info][1].congregation} y el discurso es ${meetings[id_for_extract_meeting_info][1].sketch}`)
+      }
+    })
   })
 
   $(".fa-paper-plane").click(() => {
+    if (from_lecture.is(":checked")) {
+        default_message = `Hola hermano ${meetings[id_for_extract_meeting_info][1].name} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación Central de Corozal en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`
+    } else if (from_president.is(":checked")) {
+      default_message = `Hola hermano ${meetings[id_for_extract_meeting_info][1].president} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para la presidencia el día ${meetings[id_for_extract_meeting_info][1].date}. la información del conferenciante es esta: Nombre: ${meetings[id_for_extract_meeting_info][1].name}, congregación: ${meetings[id_for_extract_meeting_info][1].congregation} y el discurso es ${meetings[id_for_extract_meeting_info][1].sketch}`
+    }
+
     close_contacts(contacts)
     $("#message-form").fadeOut()
     opacity_efect("#message-form", false)
 
-    send_whatsapp(contacts_for_send, message_default, message_box)
+    console.log(from_president.val())
+
+    send_whatsapp(contacts_for_send, default_message, message_box)
       .then((done_message) => {
         !done_message ? 
         alert(`Ha ocurrido un error al intentar enviar el mensaje, por favor verifique que el remitente cumpla los pasos mencionados en configuración o que cuente con conección a internet`) : 
@@ -362,6 +385,11 @@ $(document).ready(() => {
       })
 
     message_box.val("")
+  })
+
+  $(".fa-x").click(() => {
+    $("#message-form").fadeOut()
+    opacity_efect("#message-form", false)
   })
 
   // Generate pdf

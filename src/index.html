@@ -96,7 +96,16 @@
     <form action="#" id="form">
       <label for="message">Mensaje</label>
       <textarea id="message" cols="35" rows="7"></textarea>
-      <i class="fa-solid fa-paper-plane"></i>
+      <div id="continer">
+        <i class="fa-solid fa-x"></i>
+        <i class="fa-solid fa-paper-plane"></i>
+      </div>
+      <div id="groups">
+        <label for="to-lectures">Enviar al conferenciante</label>
+        <input type="radio" name="group" id="to-lectures">
+        <label for="to-president">Enviar al presidente</label>
+        <input type="radio" name="group" id="to-president">
+      </div>
     </form>
   </section>
 </body>
