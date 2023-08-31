@@ -75,7 +75,7 @@ $(document).ready(() => {
 
             tell = localStorage.getItem("Tell")
         } else if (user.val()) {
-            localStorage.setItem("User_name", user)
+            localStorage.setItem("User_name", user.val())
             user.val("")
     
             user_name = localStorage.getItem("User_name")
