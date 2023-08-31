@@ -61,12 +61,30 @@ $(document).ready(() => {
     })
 
     $("#send-user-name").click(() => {
-        const element = $("#user-name")
+        const user = $("#user-name")
+        const tell_input = $("#tell")
         
-        localStorage.setItem("User_name", element.val())
-        element.val("")
+        if (user.val() && tell_input.val()) {
+            localStorage.setItem("User_name", user.val())
+            user.val("")
+    
+            user_name = localStorage.getItem("User_name")
 
-        user_name = localStorage.getItem("User_name")
+            localStorage.setItem("Tell", tell_input.val())
+            tell_input.val("")
+
+            tell = localStorage.getItem("Tell")
+        } else if (user.val()) {
+            localStorage.setItem("User_name", user)
+            user.val("")
+    
+            user_name = localStorage.getItem("User_name")
+        } else if (tell_input.val()) {
+            localStorage.setItem("Tell", tell_input.val())
+            tell_input.val("")
+
+            tell = localStorage.getItem("Tell")
+        }
     })
 
     $(".fa-plus").click(() => {

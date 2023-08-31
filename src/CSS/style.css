@@ -217,3 +217,43 @@ input[type="text"] {
 #get-name {
   visibility: hidden;
 }
+
+#message-form {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 250px;
+  border-radius: 10px;
+  padding: 20px;
+
+  #form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fa-paper-plane {
+    background-color: #797979;
+    border-radius: 100px;
+    width: 2.5em;
+    height: 2em;
+    text-align: center;
+    line-height: 2em;
+    font-size: 20px;
+    padding-right: 3px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 10px;
+    transition: 0.5s;
+  }
+
+  .fa-paper-plane:hover {
+    background-color: #494949;
+  }
+}

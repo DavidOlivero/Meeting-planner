@@ -1,6 +1,7 @@
 let meetings =  JSON.parse(localStorage.getItem("Meetings")) || {}
 let number = JSON.parse(localStorage.getItem("Contacts")) || []
 let user_name = localStorage.getItem("User_name") || ""
+let tell = localStorage.getItem("Tell") || ""
 let color
 let data
 

@@ -214,10 +214,10 @@ body {
 
 #get-name {
     margin-left: 15vw;
-    width: 250px;
-    height: 200px;
+    width: 350px;
+    height: 250px;
 
-    #user-name {
+    #user-name, #tell {
         height: 40px;
     }
 

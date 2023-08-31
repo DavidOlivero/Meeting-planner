@@ -1,9 +1,4 @@
-// import { dotenv } from "dotenv"
-
 const { invoke } = window.__TAURI__.tauri
-
-// dotenv.config()
-// // require('dotenv').config()
 
 async function open_meeting_info() {
   await invoke("open_meeting_info", {  })
@@ -31,18 +26,27 @@ const close_contacts = (contacts) => {
   })
 }
 
-const send_whatsapp = (contacts_for_send, contacts_name_for_send, id_for_extract_meeting_info) => new Promise((resolve, _rejec) => {
-  let promises = [] // Array para almacenar todas las promesas credas por el fetch
+const send_whatsapp = (contacts_for_send, message_default, message_box) => new Promise((resolve, _rejec) => {
+  let promises = [] // Array fore save all promeises created in the fetch
   
-  contacts_for_send.forEach((number, index) => {
+  contacts_for_send.forEach((number) => {
+    let message
+    const custom_message = message_box.val()
+
+    if (custom_message) {
+      message = "Your appointment is coming up on July 21 at 3PM 👉 " + custom_message + " Recuerde que mi número es este " + tell + " 👈"
+    } else {
+      message = "Your appointment is coming up on July 21 at 3PM 👉 " + message_default + " Recuerde que mi número es este " + tell + " 👈"
+    }
+    
     const url = 'https://api.twilio.com/2010-04-01/Accounts/AC783e1d81f12583c95f6c6d126ce21c85/Messages.json';
     const data = new URLSearchParams({
         To: `whatsapp:+57${number}`,
         From: 'whatsapp:+14155238886',
-        Body: `Your appointment is coming up on July 21 at 3PM Hola hermano ${contacts_name_for_send[index]} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación Central de Corozal en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`
+        Body: message,
     });
 
-    // Almacenamos todas las promesas en el array
+    // Saved all promises in de array
     promises.push(
       fetch(url, {
           method: 'POST',
@@ -57,7 +61,7 @@ const send_whatsapp = (contacts_for_send, contacts_name_for_send, id_for_extract
     )
   })
 
-  // Esperar a que todas las promesas sean resueltas correctamente
+  // Way to all promises is done
   Promise.all(promises)
     .then(results => {
       const done_message = results.every(result => result)
@@ -158,15 +162,23 @@ $(document).ready(() => {
   $(document).on("click", ".fa-whatsapp", function () {
     id_for_extract_meeting_info = $(this).closest(".element").attr("id").trim().replace(/-/g, "_")
     contacts.fadeIn()
-    opacity_efect("#choose-contacts, .module", true)
+    opacity_efect("#choose-contacts, .module, #message-form", true)
   })
 
   $("#send-user-name").click(() => {
-    $("#get-name").css("visibility", "hidden")
-    opacity_efect("#get-name", false)
+    const user = $("#user-name").val()
+    const tell = $("#tell").val()
     
-    localStorage.setItem("User_name", $("#user-name").val())
-    user_name = localStorage.getItem("User_name")
+    if (user && tell) {
+      $("#get-name").css("visibility", "hidden")
+      opacity_efect("#get-name", false)
+      
+      localStorage.setItem("User_name", user)
+      localStorage.setItem("Tell", tell)
+      user_name = localStorage.getItem("User_name")
+    } else {
+      alert("Debe llenar todos los campos antes de continuar")
+    }
   })
 
   $("#save").click(() => {
@@ -291,6 +303,9 @@ $(document).ready(() => {
       number = JSON.parse(localStorage.getItem("Contacts"))
       render_contacts()
       $(".contact div").remove()
+    } else if (event.originalEvent.key === "User_name" || "Tell") {
+      user_name = localStorage.getItem("User_name")
+      tell = localStorage.getItem("Tell")
     }
   })
 
@@ -308,11 +323,11 @@ $(document).ready(() => {
     close_contacts(contacts)
   })
 
+  let message_default
+  const message_box = $("#message")
+  let contacts_for_send = []
+  let contacts_name_for_send = []
   $("#send").click(() => {
-    let contacts_for_send = []
-    let contacts_name_for_send = []
-    
-    
     $(".contact").each(function () {
       const element = $(this)
       
@@ -324,15 +339,29 @@ $(document).ready(() => {
         }
       })
     })
-    close_contacts(contacts)
+    
+    contacts_for_send.forEach((_number, _index) => {
+      message_default = `Hola hermano ${meetings[id_for_extract_meeting_info][1].name} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación Central de Corozal en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`
+    })
+    
+    message_box.attr("placeholder", message_default)
+    $("#message-form").fadeIn()
+    opacity_efect("#message-form", true)
+  })
 
-    send_whatsapp(contacts_for_send, contacts_name_for_send, id_for_extract_meeting_info)
+  $(".fa-paper-plane").click(() => {
+    close_contacts(contacts)
+    $("#message-form").fadeOut()
+    opacity_efect("#message-form", false)
+
+    send_whatsapp(contacts_for_send, message_default, message_box)
       .then((done_message) => {
         !done_message ? 
-        alert(`Ha ocurrido un error al intentar enviar el mensaje, por favor verifique que el remitente cumpla los pasos mencionados en 
-        configuración o que cuente con conección a internet`) : 
+        alert(`Ha ocurrido un error al intentar enviar el mensaje, por favor verifique que el remitente cumpla los pasos mencionados en configuración o que cuente con conección a internet`) : 
         alert("El mensaje fue enviado exitosamente")
       })
+
+    message_box.val("")
   })
 
   // Generate pdf

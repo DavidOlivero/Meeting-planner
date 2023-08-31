@@ -19,7 +19,7 @@
     background-color: #222;
 }
 
-input[type="submit"], input[type="text"], #filter, #controls button {
+input[type="submit"], input[type="text"], #filter, #controls button, #message-form {
     border: 1px solid #fff;
 }
 

@@ -45,18 +45,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    grid: 15px;
+    gap: 10px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 200px;
-    height: 150px;
+    width: 350px;
+    height: 250px;
     border-radius: 10px;
     padding: 10px;
 }
   
-#user-name {
+#user-name, #tell {
     margin: 15px;
     padding: 5px;
     border-radius: 10px;
