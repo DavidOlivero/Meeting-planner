@@ -134,17 +134,17 @@ $(document).ready(() => {
 
     $(document).on("click", ".fa-share", function () {
         const id = $(this).parent().parent().attr("id").trim().replace(/-/g, " ")
-        let tell
+        let tellephone
 
         number.forEach((element) => {
             if (element.includes(id)) {
-                tell = element.split("/")[0]
+                tellephone = element.split("/")[0]
             }
         })
 
         const message = encodeURIComponent(`Hola hermano soy ${user_name} el organizador de conferencias de la Congregación Central le escribo para que guarde este contacto en su celular por medio de este link y le da a enviar a ese mensaje que está allí, lo que pasa es que nosotros manejamos un programa para cistematizar la tarea de organizar las reuniones y por medio de ese contacto el programa manda los recordatorios de las conferencias a los hermanos, por eso necesita que tenga ese contacto guardado. ¡Gracias! https://wa.me/+14155238886?text=join%20nervous-shirt`)
         
-        const url = `https://wa.me/+57${tell}?text=${message}`
+        const url = `https://wa.me/${tellephone}?text=${message}`
         window.open(url)
     })
 
