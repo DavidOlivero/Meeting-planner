@@ -2,7 +2,7 @@ const { invoke } = window.__TAURI__.tauri
 
 const save_contact = (add_number_input, add_name) => {
     if(add_number_input.val()) {
-        if (typeof add_number_input.val() === "number") {
+        if (!isNaN(parseInt(add_number_input.val()))) {
             add_name.css("visibility", "visible")
     
             opacity_efect("#add-name", true)
