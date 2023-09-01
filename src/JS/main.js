@@ -358,7 +358,7 @@ $(document).ready(() => {
 
     from_lecture.click(function () {
       if ($(this).is(":checked")) {
-        message_box.attr("placeholder", `Hola hermano ${meetings[id_for_extract_meeting_info][1].name} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación ${congregation} en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`)
+        message_box.attr("placeholder", `Hola hermano ${meetings[id_for_extract_meeting_info][1].name} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública en la congregación ${congregation} en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`)
       }
     })
 
@@ -371,7 +371,7 @@ $(document).ready(() => {
 
   $(".fa-paper-plane").click(() => {
     if (from_lecture.is(":checked")) {
-        default_message = `Hola hermano ${meetings[id_for_extract_meeting_info][1].name} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación ${congregation} en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`
+        default_message = `Hola hermano ${meetings[id_for_extract_meeting_info][1].name} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública en la congregación ${congregation} en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`
     } else if (from_president.is(":checked")) {
       default_message = `Hola hermano ${meetings[id_for_extract_meeting_info][1].president} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para la presidencia el día ${meetings[id_for_extract_meeting_info][1].date}. la información del conferenciante es esta: Nombre: ${meetings[id_for_extract_meeting_info][1].name}, congregación: ${meetings[id_for_extract_meeting_info][1].congregation} y el discurso es ${meetings[id_for_extract_meeting_info][1].sketch}`
     }
