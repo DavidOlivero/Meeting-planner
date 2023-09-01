@@ -144,7 +144,7 @@ $(document).ready(() => {
 
         const message = encodeURIComponent(`Hola hermano soy ${user_name} el organizador de conferencias de la Congregación Central le escribo para que guarde este contacto en su celular por medio de este link y le da a enviar a ese mensaje que está allí, lo que pasa es que nosotros manejamos un programa para cistematizar la tarea de organizar las reuniones y por medio de ese contacto el programa manda los recordatorios de las conferencias a los hermanos, por eso necesita que tenga ese contacto guardado. ¡Gracias! https://wa.me/+14155238886?text=join%20nervous-shirt`)
         
-        const url = `https://wa.me/${tellephone}?text=${message}`
+        const url = `https://wa.me/+57${tellephone}?text=${message}`
         window.open(url)
     })
 
