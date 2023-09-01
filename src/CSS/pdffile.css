@@ -26,16 +26,20 @@ table {
     line-height: 30px;
 }
 
+thead tr td:not(.month) {
+    font-size: 15px;
+}
+
 thead tr td, .month {
     text-align: center;
     font-weight: bold;
     border: 1px solid #000;
-    padding: 10px;
 }
 
 td {
     border: 1px solid #000;
     text-align: center;
+    padding: 10px;
 }
 
 #president, #reader {
