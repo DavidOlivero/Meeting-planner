@@ -63,8 +63,9 @@ $(document).ready(() => {
     $("#send-user-name").click(() => {
         const user = $("#user-name")
         const tell_input = $("#tell")
+        const cong = $("#cong")
         
-        if (user.val() && tell_input.val()) {
+        if (user.val()) {
             localStorage.setItem("User_name", user.val())
             user.val("")
     
@@ -74,16 +75,20 @@ $(document).ready(() => {
             tell_input.val("")
 
             tell = localStorage.getItem("Tell")
-        } else if (user.val()) {
-            localStorage.setItem("User_name", user.val())
-            user.val("")
-    
-            user_name = localStorage.getItem("User_name")
-        } else if (tell_input.val()) {
+        }
+        
+        if (tell_input.val()) {
             localStorage.setItem("Tell", tell_input.val())
             tell_input.val("")
 
             tell = localStorage.getItem("Tell")
+        }
+
+        if (cong.val()) {
+            localStorage.setItem("Congregation", cong.val())
+            cong.val("")
+
+            congregation = localStorage.getItem("Congregation")
         }
     })
 

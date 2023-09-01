@@ -167,15 +167,19 @@ $(document).ready(() => {
 
   $("#send-user-name").click(() => {
     const user = $("#user-name").val()
-    const tell = $("#tell").val()
+    const phone = $("#tell").val()
+    const cong = $("#cong").val()
     
-    if (user && tell) {
+    if (user && phone && cong) {
       $("#get-name").css("visibility", "hidden")
       opacity_efect("#get-name", false)
       
       localStorage.setItem("User_name", user)
-      localStorage.setItem("Tell", tell)
+      localStorage.setItem("Tell", phone)
+      localStorage.setItem("Congregation", cong)
       user_name = localStorage.getItem("User_name")
+      tell = localStorage.getItem("Tell")
+      congregation = localStorage.getItem("Congregation")
     } else {
       alert("Debe llenar todos los campos antes de continuar")
     }
@@ -303,9 +307,10 @@ $(document).ready(() => {
       number = JSON.parse(localStorage.getItem("Contacts"))
       render_contacts()
       $(".contact div").remove()
-    } else if (event.originalEvent.key === "User_name" || "Tell") {
+    } else if (event.originalEvent.key === "User_name" || event.originalEvent.key === "Tell" || event.originalEvent.key === "Congregation") {
       user_name = localStorage.getItem("User_name")
       tell = localStorage.getItem("Tell")
+      congregation = localStorage.getItem("Congregation")
     }
   })
 
@@ -353,7 +358,7 @@ $(document).ready(() => {
 
     from_lecture.click(function () {
       if ($(this).is(":checked")) {
-        message_box.attr("placeholder", `Hola hermano ${meetings[id_for_extract_meeting_info][1].name} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación Central de Corozal en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`)
+        message_box.attr("placeholder", `Hola hermano ${meetings[id_for_extract_meeting_info][1].name} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación ${congregation} en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`)
       }
     })
 
@@ -366,7 +371,7 @@ $(document).ready(() => {
 
   $(".fa-paper-plane").click(() => {
     if (from_lecture.is(":checked")) {
-        default_message = `Hola hermano ${meetings[id_for_extract_meeting_info][1].name} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación Central de Corozal en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`
+        default_message = `Hola hermano ${meetings[id_for_extract_meeting_info][1].name} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para una conferencia pública el Domingo en la congregación ${congregation} en la siguiente fecha ${meetings[id_for_extract_meeting_info][1].date}. ¡Gracias, quedo atento 😁!`
     } else if (from_president.is(":checked")) {
       default_message = `Hola hermano ${meetings[id_for_extract_meeting_info][1].president} espero se encuentre bien, le habla ${user_name}, le escribo para informarle que fue asignado para la presidencia el día ${meetings[id_for_extract_meeting_info][1].date}. la información del conferenciante es esta: Nombre: ${meetings[id_for_extract_meeting_info][1].name}, congregación: ${meetings[id_for_extract_meeting_info][1].congregation} y el discurso es ${meetings[id_for_extract_meeting_info][1].sketch}`
     }
