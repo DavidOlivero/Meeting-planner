@@ -225,9 +225,7 @@ $(document).ready(() => {
         filter.fadeIn()
         opacity_efect("#filter", true)
 
-        $("#filter-form").submit((e) => {
-            e.preventDefault()
-
+        $("#done").click(() => {
             const val = $(".element")
             let info = {}
 
@@ -240,19 +238,24 @@ $(document).ready(() => {
             let i = 0
             val.each(function () {
                 const id_val = $(this).attr("id")
-                const data = meetings[id_val.replace(/-/g, "_")][1]
-                const element = $("#" + id_val)
+                let data
+
+                Object.values(meetings).forEach(element => {
+                    if (id_val.includes($(element[0]).attr("id"))) {
+                        data = element[1]
+                    }                 
+                })
                 
-                if (info.name && !info.name.toLowerCase().includes(data.name.toLowerCase())) {
+                if (info.name && !data.name.toLowerCase().includes(info.name.toLowerCase())) {
                     element.hide()
                     i++
                 }
-                if (info.sketch && !info.sketch.toLowerCase().includes(data.sketch.toLowerCase())) {
-                    opacity_efect("#filter", false)
+                if (info.sketch && !data.sketch.toLowerCase().includes(info.sketch.toLowerCase())) {
+                    element.hide()
                     i++
                 }
-                if (info.congregation && !info.congregation.toLowerCase().includes(data.congregation.toLowerCase())) {
-                    opacity_efect("#filter", false)
+                if (info.congregation && !data.congregation.toLowerCase().includes(info.congregation.toLowerCase())) {
+                    element.hide()
                     i++
                 }
                 if (info.date1 && info.date2) {
@@ -282,6 +285,11 @@ $(document).ready(() => {
             } else {
                 $("#unresult").hide()
             }
+        })
+
+        $("#controls, close").click(() => {
+            filter.fadeOut()
+            opacity_efect("#filter", false)
         })
     })
 
