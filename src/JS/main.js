@@ -380,8 +380,6 @@ $(document).ready(() => {
     $("#message-form").fadeOut()
     opacity_efect("#message-form", false)
 
-    console.log(from_president.val())
-
     send_whatsapp(contacts_for_send, default_message, message_box)
       .then((done_message) => {
         !done_message ? 
@@ -390,6 +388,7 @@ $(document).ready(() => {
       })
 
     message_box.val("")
+    contacts_for_send = []
   })
 
   $(".fa-x").click(() => {
