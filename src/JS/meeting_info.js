@@ -245,6 +245,8 @@ $(document).ready(() => {
                         data = element[1]
                     }                 
                 })
+
+                const element = $("#" + id_val)
                 
                 if (info.name && !data.name.toLowerCase().includes(info.name.toLowerCase())) {
                     element.hide()
@@ -267,6 +269,7 @@ $(document).ready(() => {
                     const date_seach = data.date.split("/")
                     const full_date = new Date(date_seach[2], parseInt(date_seach[0] - 1), date_seach[1])
 
+                    console.log(full_date, date1, date2)
                     if (full_date < date1 || full_date > date2) {
                         element.hide()
                         i++
