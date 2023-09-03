@@ -311,7 +311,7 @@ $(document).ready(() => {
       user_name = localStorage.getItem("User_name")
       tell = localStorage.getItem("Tell")
       congregation = localStorage.getItem("Congregation")
-    }
+    } else if (localStorage.length === 0) location.reload()
   })
 
   $(document).on("click", ".contact", function () {

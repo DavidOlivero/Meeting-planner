@@ -198,5 +198,15 @@ $(document).ready(() => {
             })
     })
 
+    $(".fa-rotate-right").click(() => {
+        confirm("Tenga en cuenta que esto borrará todos sus registros y configuraciones, decea proseguir.")
+            .then((value) => { 
+                if (value) {
+                    localStorage.clear()
+                    location.reload()
+                }
+            })
+    })
+
     render_contacts()
 })

@@ -225,3 +225,19 @@ body {
         width: 50px;
     }
 }
+
+.fa-rotate-right {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    font-size: 20px;
+    background-color: #257cda;
+    padding: 10px;
+    border-radius: 100px;
+    transition: 0.5s;
+}
+
+.fa-rotate-right:hover {
+    background-color: #164a81;
+}

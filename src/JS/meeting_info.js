@@ -163,7 +163,7 @@ $(document).ready(() => {
             delete_icons_trash_edit()
             set_left_date()
             set_delay_time()
-        }
+        } else if(localStorage.length === 0) location.reload()
     })
 
     $(document).on("click", ".element", function () {
