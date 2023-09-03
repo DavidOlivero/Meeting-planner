@@ -54,7 +54,7 @@ const search_function = () => {
 
 const set_left_date = () => {
     evaluate_by_date(function (time_left) {
-        const element = $("#" + data.id.replace(/ /g, "-")).find("div")
+        const element = $("#" + data.id.replace(/ /g, "-").replace(/\//g, "-").replace(/\./g, "-")).find("div")
 
         if (time_left[0] > 0) {
             element.append(`

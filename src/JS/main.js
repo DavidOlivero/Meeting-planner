@@ -219,7 +219,7 @@ $(document).ready(() => {
 
       if (!comprobate) {
         if (!old_data) {          
-          const code = `<li class="element" id=${id.replace(/ /g, "-")}>
+          const code = `<li class="element" id=${id.replace(/ /g, "-").replace(/\//g, "-").replace(/\./g, "-")}>
                           <div>
                             <p class="id">${id}</p>
                             <p class="date">${date}</p>
